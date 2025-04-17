@@ -1,7 +1,8 @@
 package com.example.blzapi.model.entity;
 
-public class Funcionario extends Pessoa{
+public class ClienteLoja{
 
     private Loja loja;
+    private Usuario usuario;
 
 }

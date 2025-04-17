@@ -7,4 +7,5 @@ public class Servico {
     private int preco;
     private float comissao;
     private float desconto;
+    private Loja loja;
 }

@@ -1,5 +1,6 @@
 package com.example.blzapi.model.entity;
 
+
 public class Produto {
 
     private String nome;
@@ -10,5 +11,8 @@ public class Produto {
     private int quantidade;
     private String dataValidade;
     private int quantidadeMin;
+    private Loja loja;
+    private Fornecedor fornecedor;
+
 
 }

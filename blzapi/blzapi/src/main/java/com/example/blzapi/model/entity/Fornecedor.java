@@ -8,9 +8,4 @@ public class Fornecedor{
         private String nome;
         private String telefone;
         private String celular;
-
-
-
-
-
 }

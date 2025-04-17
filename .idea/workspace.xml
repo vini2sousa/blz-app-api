@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="57e4aea1-802d-45d9-bec0-435a5ba32268" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ClienteLoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Comanda.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ItemVendas.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/OrdemServicos.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ProdutoUtilizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Fornecedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Fornecedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vlNuyV5emMTw2E8IVSXv8dprmq" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "nomeClasses",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/franc/OneDrive/Área de Trabalho/Programação/blz-app-api"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="blzapi" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="blzapi" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="57e4aea1-802d-45d9-bec0-435a5ba32268" name="Changes" comment="" />
+      <created>1744715926473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744715926473</updated>
+    </task>
+    <servers />
+  </component>
+</project>
