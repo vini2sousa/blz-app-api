@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57e4aea1-802d-45d9-bec0-435a5ba32268" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ClienteLoja.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Comanda.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ItemVendas.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/OrdemServicos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ProdutoUtilizado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Fornecedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Fornecedor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Loja.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,19 +28,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "nomeClasses",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/franc/OneDrive/Área de Trabalho/Programação/blz-app-api"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;nomeClasses&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/franc/OneDrive/Área de Trabalho/Programação/blz-app-api&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="blzapi" />

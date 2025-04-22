@@ -1,5 +1,6 @@
 package com.example.blzapi.model.entity;
 
+
 public class Loja {
 
     private String nome;

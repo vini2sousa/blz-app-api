@@ -2,7 +2,7 @@ package com.example.blzapi.model.entity;
 
 public class ProdutoUtilizado{
 
-    private Servicos servicos;
-    private Produtos produtos;
-    private quantidade;
+    private Servico servicos;
+    private Produto produtos;
+    private int quantidade;
 }
