@@ -1,4 +1,5 @@
 package com.example.blzapi.model.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,14 +14,13 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Comanda{
+public class FormaPagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
 
-    private FormaPagamento tipoPagamento;
-    private String horario;
-    private Agendamento agendamento;
+    private String nome;
+    private String descricao;
 }

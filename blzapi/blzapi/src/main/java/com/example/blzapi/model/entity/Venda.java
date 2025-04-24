@@ -21,6 +21,7 @@ public class Venda {
 
     private long id;
 
+    private FormaPagamento formaPagamento;
     private String data;
     private String horario;
     private Loja loja;
