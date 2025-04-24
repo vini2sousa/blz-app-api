@@ -1,4 +1,5 @@
 package com.example.blzapi.model.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,17 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class OrdemServicos{
-
+public class CargoFuncionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
 
-    private int quantidade;
     @ManyToOne
-    private Servico servicos;
+    private Cargo cargo;
     @ManyToOne
-    private Agendamento agendamento;
-
+    private Funcionario funcionario;
 }

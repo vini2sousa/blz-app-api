@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="57e4aea1-802d-45d9-bec0-435a5ba32268" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/FormaPagamento.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/CargoFuncionario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Agendamento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Cargo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ClienteLoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ClienteLoja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Comanda.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Comanda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Funcionario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ItemVendas.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ItemVendas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/OrdemServicos.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/OrdemServicos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ProdutoUtilizado.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/ProdutoUtilizado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Servico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" beforeDir="false" afterPath="$PROJECT_DIR$/blzapi/blzapi/src/main/java/com/example/blzapi/model/entity/Venda.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
