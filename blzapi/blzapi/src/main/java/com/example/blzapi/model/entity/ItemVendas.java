@@ -11,19 +11,17 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Venda {
+public class ItemVendas{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private long id;
 
+    private int quantidade;
     @ManyToOne
-    private FormaPagamento formaPagamento;
-    private String data;
-    private String horario;
+    private Venda vendas;
     @ManyToOne
-    private Loja loja;
-    @ManyToOne
-    private Usuario usuario;
+    private Produto produtos;
+
 }

@@ -1,4 +1,19 @@
 package com.example.blzapi.model.entity;
 
-public class Funcionario {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
+public class Funcionario extends Pessoa{
+
+    @ManyToOne
+    private Loja loja;
+
 }

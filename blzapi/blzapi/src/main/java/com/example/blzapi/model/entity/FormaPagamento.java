@@ -14,7 +14,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Loja {
+public class FormaPagamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +22,5 @@ public class Loja {
     private long id;
 
     private String nome;
-    private String email;
-    private String telefone;
-    private String celular;
-    private String cnpj;
-    private String dataCriacao;
-    private String logradouro;
-    private String numero;
-    private String complemento;
-    private String bairro;
-    private String cidade;
-    private String estado;
-    private String cep;
+    private String descricao;
 }
