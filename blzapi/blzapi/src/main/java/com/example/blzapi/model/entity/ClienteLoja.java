@@ -15,8 +15,8 @@ public class ClienteLoja{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
+
     @ManyToOne
     private Loja loja;
     @ManyToOne

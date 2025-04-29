@@ -8,10 +8,5 @@ public class BlzapiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlzapiApplication.class, args);
-
-
-			
-
 	}
-
 }

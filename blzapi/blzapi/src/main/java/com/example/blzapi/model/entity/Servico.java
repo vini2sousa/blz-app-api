@@ -15,7 +15,6 @@ public class Servico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private long id;
 
     private String nome;
