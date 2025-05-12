@@ -1,6 +1,6 @@
 package com.example.blzapi.api.dto;
 
-import com.example.blzapi.model.entity.Colaborador;
+import com.example.blzapi.model.entity.Fornecedor;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,20 +13,21 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ColaboradorDTO {
+public class FornecerdorDTO {
 
-    private long id;
+    private Long id;
+    private boolean tipoEntidade;
+    private String cnpj;
+    private String cpf;
     private String nome;
     private String telefone;
     private String celular;
-    private String dataNascimento;
-    private long idLoja;
-    private String nomeLoja;
 
-    public static ColaboradorDTO create(Colaborador colaborador){
+    public static  FornecerdorDTO create(Fornecedor fornecedor){
 
         ModelMapper modelMapper = new ModelMapper();
-        ColaboradorDTO dto = modelMapper.map(colaborador, ColaboradorDTO.class);
+        FornecerdorDTO dto = modelMapper.map(fornecedor,FornecerdorDTO.class);
         return dto;
     }
+
 }
