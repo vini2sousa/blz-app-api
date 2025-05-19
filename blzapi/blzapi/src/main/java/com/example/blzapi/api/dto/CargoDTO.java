@@ -9,10 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import org.modelmapper.ModelMapper;
 
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 
 
 public class CargoDTO {
