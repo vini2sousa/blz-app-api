@@ -2,8 +2,13 @@ package com.example.blzapi.api.dto;
 
 import com.example.blzapi.model.entity.Comanda;
 import com.example.blzapi.model.entity.Loja;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
-
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class LojaDTO {
     private long id;
     private String nome;

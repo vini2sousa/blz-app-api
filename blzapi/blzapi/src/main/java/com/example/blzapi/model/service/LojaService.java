@@ -2,12 +2,14 @@ package com.example.blzapi.model.service;
 
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.repository.LojaRepository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class LojaService {
     private LojaRepository repository;
 

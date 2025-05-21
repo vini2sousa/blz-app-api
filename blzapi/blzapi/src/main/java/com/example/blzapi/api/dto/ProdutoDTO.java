@@ -22,14 +22,16 @@ public class ProdutoDTO {
     private int quantidade;
     private String dataValidade;
     private int quantidadeMin;
-    private long idLoja;
+    private Long idLoja;
     private String nomeLoja;
-    private long idFornecedor;
+    private Long idFornecedor;
     private String nomeFornecedor;
 
     public static ProdutoDTO create(Produto produto) {
         ModelMapper modelMapper = new ModelMapper();
         ProdutoDTO dto = modelMapper.map(produto, ProdutoDTO.class);
+        dto.nomeLoja = produto.getLoja().getNome();
+        dto.nomeFornecedor = produto.getFornecedor().getNome();
         return dto;
     }
 }
