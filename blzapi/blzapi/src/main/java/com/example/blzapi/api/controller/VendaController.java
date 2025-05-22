@@ -2,14 +2,8 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.VendaDTO;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.entity.Usuario;
-import com.example.blzapi.model.entity.Venda;
-import com.example.blzapi.model.service.AgendamentoService;
-import com.example.blzapi.model.service.LojaService;
-import com.example.blzapi.model.service.UsuarioService;
-import com.example.blzapi.model.service.VendaService;
+import com.example.blzapi.model.entity.*;
+import com.example.blzapi.model.service.*;
 import org.modelmapper.ModelMapper;
 
 import java.util.Optional;
@@ -19,6 +13,7 @@ public class VendaController {
     private VendaService service;
     private LojaService lojaService;
     private UsuarioService usuarioService;
+    private FormaPagamentoService formaPagamentoService;
 
     public Venda converter(VendaDTO dto){
 
@@ -43,6 +38,15 @@ public class VendaController {
                 venda.setUsuario(null);
             }else {
                 venda.setUsuario(usuario.get());
+            }
+        }
+        if(dto.getIdFormaPagamento() != null){
+            Optional<FormaPagamento> formaPagamento = formaPagamentoService.getFormaPagamentoById(dto.getIdFormaPagamento());
+            if(!formaPagamento.isPresent()){
+                venda.setFormaPagamento(null);
+            }
+            else {
+                venda.setFormaPagamento(formaPagamento.get());
             }
         }
 
