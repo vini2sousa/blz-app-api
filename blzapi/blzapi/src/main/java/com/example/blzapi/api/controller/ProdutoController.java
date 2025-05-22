@@ -10,9 +10,19 @@ import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ProdutoService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+
+
+@RestController
+@RequestMapping("/api/v1/produtos")
+@RequiredArgsConstructor
+@CrossOrigin
 
 public class ProdutoController {
 

@@ -7,10 +7,19 @@ import com.example.blzapi.model.entity.FormaPagamento;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.ComandaService;
 import com.example.blzapi.model.service.FormaPagamentoService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+
+@RestController
+@RequestMapping("/api/v1/comandas")
+@RequiredArgsConstructor
+@CrossOrigin
 public class ComandaController {
 
     private ComandaService service;

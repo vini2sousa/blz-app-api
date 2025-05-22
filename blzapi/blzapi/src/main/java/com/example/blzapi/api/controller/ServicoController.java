@@ -8,10 +8,18 @@ import com.example.blzapi.model.entity.Servico;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ServicoService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/api/v1/servicos")
+@RequiredArgsConstructor
+@CrossOrigin
 public class ServicoController {
 
     private ServicoService service;

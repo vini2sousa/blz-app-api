@@ -6,9 +6,19 @@ import com.example.blzapi.model.entity.Comanda;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
+
+
+@RestController
+@RequestMapping("/api/v1/agendamentos")
+@RequiredArgsConstructor
+@CrossOrigin
 
 public class AgendamentoController {
 

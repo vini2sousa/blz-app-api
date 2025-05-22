@@ -4,10 +4,18 @@ import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.VendaDTO;
 import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.*;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
+@RestController
+@RequestMapping("/api/v1/vendas")
+@RequiredArgsConstructor
+@CrossOrigin
 public class VendaController {
 
     private VendaService service;
