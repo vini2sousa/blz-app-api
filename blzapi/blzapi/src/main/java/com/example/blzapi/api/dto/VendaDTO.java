@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 public class VendaDTO {
-    private long id;
+    private Long id;
 
 
     private Long idFormaPagamento;

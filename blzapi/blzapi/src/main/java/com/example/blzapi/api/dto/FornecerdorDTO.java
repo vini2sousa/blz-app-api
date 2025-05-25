@@ -8,7 +8,7 @@ import org.modelmapper.ModelMapper;
 
 import javax.persistence.Entity;
 
-@Entity
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

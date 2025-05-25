@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LojaDTO {
-    private long id;
+    private Long id;
     private String nome;
     private String email;
     private String telefone;

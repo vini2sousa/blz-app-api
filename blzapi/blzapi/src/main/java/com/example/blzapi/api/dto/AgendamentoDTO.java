@@ -12,7 +12,7 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class AgendamentoDTO {
 
-    private long id;
+    private Long id;
     private String horario;
     private String data;
     private Long idLoja;

@@ -15,7 +15,7 @@ public class OrdemServicos{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private long id;
+    private Long id;
 
     private int quantidade;
     @ManyToOne

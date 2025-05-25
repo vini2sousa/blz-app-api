@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ComandaDTO {
-    private long id;
+    private Long id;
     private Long idFormaPagamento;
     private  String formaTipoPagamento;
     private String horario;

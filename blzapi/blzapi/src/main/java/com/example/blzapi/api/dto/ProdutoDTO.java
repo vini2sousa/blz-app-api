@@ -12,7 +12,7 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class ProdutoDTO {
 
-    private long id;
+    private Long id;
 
     private String nome;
     private float valorCompra;

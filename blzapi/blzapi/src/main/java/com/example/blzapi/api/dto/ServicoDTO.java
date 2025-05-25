@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ServicoDTO {
-    private long id;
+    private Long id;
     private String nome;
     private int duracao;
     private int preco;
