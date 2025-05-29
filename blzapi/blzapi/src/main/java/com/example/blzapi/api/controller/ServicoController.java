@@ -10,11 +10,15 @@ import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ServicoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/servicos")
@@ -22,8 +26,14 @@ import java.util.Optional;
 @CrossOrigin
 public class ServicoController {
 
-    private ServicoService service;
-    private LojaService lojaService;
+    private final ServicoService service;
+    private final LojaService lojaService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Servico> servico = service.getServico();
+        return ResponseEntity.ok(servico.stream().map(ServicoDTO::create).collect(Collectors.toList()));
+    }
 
     public Servico converter(ServicoDTO dto) {
         ModelMapper mapper = new ModelMapper();

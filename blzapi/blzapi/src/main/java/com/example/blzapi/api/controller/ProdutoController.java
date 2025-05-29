@@ -12,11 +12,15 @@ import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ProdutoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -26,9 +30,15 @@ import java.util.Optional;
 
 public class ProdutoController {
 
-    private ProdutoService service;
-    private LojaService lojaService;
-    private FornecedorService fornecedorService;
+    private final ProdutoService service;
+    private final LojaService lojaService;
+    private final FornecedorService fornecedorService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Produto> produto = service.getProdutos();
+        return ResponseEntity.ok(produto.stream().map(ProdutoDTO::create).collect(Collectors.toList()));
+    }
 
     public Produto converter(ProdutoDTO dto){
 

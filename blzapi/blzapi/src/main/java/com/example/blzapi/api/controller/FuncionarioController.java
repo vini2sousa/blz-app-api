@@ -10,11 +10,15 @@ import com.example.blzapi.model.service.FuncionarioService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -24,8 +28,14 @@ import java.util.Optional;
 
 public class FuncionarioController {
 
-    private FuncionarioService service;
-    private LojaService lojaService;
+    private final FuncionarioService service;
+    private final LojaService lojaService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Funcionario> funcionario = service.getFuncionarios();
+        return ResponseEntity.ok(funcionario.stream().map(FuncionarioDTO::create).collect(Collectors.toList()));
+    }
 
     public Funcionario converter(FuncionarioDTO dto){
 

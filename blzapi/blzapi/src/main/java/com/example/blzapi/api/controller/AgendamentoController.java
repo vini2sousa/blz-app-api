@@ -22,8 +22,8 @@ import java.util.Optional;
 
 public class AgendamentoController {
 
-    private  AgendamentoService service;
-    private  LojaService lojaService;
+    private final AgendamentoService service;
+    private final LojaService lojaService;
 
     public Agendamento converter(AgendamentoDTO dto){
 

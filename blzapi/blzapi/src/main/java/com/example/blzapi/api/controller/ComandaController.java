@@ -9,11 +9,15 @@ import com.example.blzapi.model.service.ComandaService;
 import com.example.blzapi.model.service.FormaPagamentoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -22,9 +26,15 @@ import java.util.Optional;
 @CrossOrigin
 public class ComandaController {
 
-    private ComandaService service;
-    private AgendamentoService agendamentoService;
-    private FormaPagamentoService formaPagamentoService;
+    private final ComandaService service;
+    private final AgendamentoService agendamentoService;
+    private final FormaPagamentoService formaPagamentoService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Comanda> comanda = service.getComandas();
+        return ResponseEntity.ok(comanda.stream().map(ComandaDTO::create).collect(Collectors.toList()));
+    }
 
     public Comanda converter(ComandaDTO dto){
 
