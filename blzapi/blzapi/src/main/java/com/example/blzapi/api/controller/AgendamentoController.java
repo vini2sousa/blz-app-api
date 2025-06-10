@@ -8,9 +8,9 @@ import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -24,6 +24,15 @@ public class AgendamentoController {
 
     private final AgendamentoService service;
     private final LojaService lojaService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity get(@PathVariable("id") Long id) {
+        Optional<Agendamento> aluno = service.getAgendamentoById(id);
+        if (!aluno.isPresent()) {
+            return new ResponseEntity("Agendamento não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(aluno.map(AgendamentoDTO::create));
+    }
 
     public Agendamento converter(AgendamentoDTO dto){
 

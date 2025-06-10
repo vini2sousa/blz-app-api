@@ -9,11 +9,9 @@ import com.example.blzapi.model.service.ComandaService;
 import com.example.blzapi.model.service.FormaPagamentoService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +32,14 @@ public class ComandaController {
     public ResponseEntity get() {
         List<Comanda> comanda = service.getComandas();
         return ResponseEntity.ok(comanda.stream().map(ComandaDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity get(@PathVariable("id") Long id) {
+        Optional<Comanda> aluno = service.getComandaById(id);
+        if (!aluno.isPresent()) {
+            return new ResponseEntity("Comanda não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(aluno.map(ComandaDTO::create));
     }
 
     public Comanda converter(ComandaDTO dto){

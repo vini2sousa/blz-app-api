@@ -12,11 +12,9 @@ import com.example.blzapi.model.service.CargoService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,6 +35,14 @@ public class CargoController {
     public ResponseEntity get() {
         List<Cargo> cargo = service.getCargos();
         return ResponseEntity.ok(cargo.stream().map(CargoDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity get(@PathVariable("id") Long id) {
+        Optional<Cargo> aluno = service.getCargoById(id);
+        if (!aluno.isPresent()) {
+            return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(aluno.map(CargoDTO::create));
     }
 
     public Cargo converter(AgendamentoDTO dto){

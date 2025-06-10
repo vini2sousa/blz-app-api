@@ -5,11 +5,9 @@ import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.*;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +28,14 @@ public class VendaController {
     public ResponseEntity get() {
         List<Venda> fornecedor = service.getVendas();
         return ResponseEntity.ok(fornecedor.stream().map(VendaDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity get(@PathVariable("id") Long id) {
+        Optional<Venda> aluno = service.getVendaById(id);
+        if (!aluno.isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok(aluno.map(VendaDTO::create));
     }
 
     public Venda converter(VendaDTO dto){
