@@ -1,6 +1,7 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.FornecerdorDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Fornecedor;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
@@ -35,6 +36,16 @@ public class FornecedorController {
             return new ResponseEntity("Fornecedor não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(FornecerdorDTO::create));
+    }
+    @PostMapping()
+    public ResponseEntity post(@RequestBody FornecerdorDTO dto) {
+        try {
+            Fornecedor fornecedor = converter(dto);
+            fornecedor = service.salvar(fornecedor);
+            return new ResponseEntity(fornecedor, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     public Fornecedor converter(FornecerdorDTO dto){
 

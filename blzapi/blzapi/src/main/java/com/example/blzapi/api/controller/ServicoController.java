@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.ServicoDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Servico;
@@ -39,6 +40,16 @@ public class ServicoController {
             return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(ServicoDTO::create));
+    }
+    @PostMapping()
+    public ResponseEntity post(@RequestBody ServicoDTO dto) {
+        try {
+            Servico servico = converter(dto);
+            servico = service.salvar(servico);
+            return new ResponseEntity(servico, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     public Servico converter(ServicoDTO dto) {

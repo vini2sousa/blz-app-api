@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.FuncionarioDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Funcionario;
 import com.example.blzapi.model.entity.Loja;
@@ -42,7 +43,16 @@ public class FuncionarioController {
         }
         return ResponseEntity.ok(aluno.map(FuncionarioDTO::create));
     }
-
+    @PostMapping()
+    public ResponseEntity post(@RequestBody FuncionarioDTO dto) {
+        try {
+            Funcionario funcionario = converter(dto);
+            funcionario = service.salvar(funcionario);
+            return new ResponseEntity(funcionario, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Funcionario converter(FuncionarioDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

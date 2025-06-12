@@ -1,6 +1,7 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.ComandaDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Comanda;
 import com.example.blzapi.model.entity.FormaPagamento;
@@ -40,6 +41,16 @@ public class ComandaController {
             return new ResponseEntity("Comanda não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(ComandaDTO::create));
+    }
+    @PostMapping()
+    public ResponseEntity post(@RequestBody ComandaDTO dto) {
+        try {
+            Comanda comanda = converter(dto);
+            comanda = service.salvar(comanda);
+            return new ResponseEntity(comanda, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     public Comanda converter(ComandaDTO dto){

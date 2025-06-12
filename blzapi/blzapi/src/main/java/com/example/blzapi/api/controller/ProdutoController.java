@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.ProdutoDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Fornecedor;
 import com.example.blzapi.model.entity.Loja;
@@ -45,7 +46,16 @@ public class ProdutoController {
         }
         return ResponseEntity.ok(aluno.map(ProdutoDTO::create));
     }
-
+    @PostMapping()
+    public ResponseEntity post(@RequestBody ProdutoDTO dto) {
+        try {
+            Produto produto = converter(dto);
+            produto = service.salvar(produto);
+            return new ResponseEntity(produto, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Produto converter(ProdutoDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

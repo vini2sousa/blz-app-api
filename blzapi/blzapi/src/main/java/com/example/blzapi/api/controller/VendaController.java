@@ -1,6 +1,7 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.VendaDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.*;
 import lombok.RequiredArgsConstructor;
@@ -37,7 +38,16 @@ public class VendaController {
         }
         return ResponseEntity.ok(aluno.map(VendaDTO::create));
     }
-
+    @PostMapping()
+    public ResponseEntity post(@RequestBody VendaDTO dto) {
+        try {
+            Venda venda = converter(dto);
+            venda = service.salvar(venda);
+            return new ResponseEntity(venda, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Venda converter(VendaDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

@@ -3,6 +3,7 @@ package com.example.blzapi.api.controller;
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.CargoDTO;
 import com.example.blzapi.api.dto.FornecerdorDTO;
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Cargo;
 import com.example.blzapi.model.entity.Fornecedor;
@@ -43,6 +44,16 @@ public class CargoController {
             return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(CargoDTO::create));
+    }
+    @PostMapping()
+    public ResponseEntity post(@RequestBody CargoDTO dto) {
+        try {
+            Cargo cargo = converter(dto);
+            cargo = service.salvar(cargo);
+            return new ResponseEntity(cargo, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     public Cargo converter(AgendamentoDTO dto){
