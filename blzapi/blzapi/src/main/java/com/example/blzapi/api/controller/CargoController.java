@@ -56,7 +56,7 @@ public class CargoController {
         }
     }
 
-    public Cargo converter(AgendamentoDTO dto){
+    public Cargo converter(CargoDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
         Cargo cargo = modelMapper.map(dto,Cargo.class);
