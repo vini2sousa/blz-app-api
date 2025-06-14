@@ -13,6 +13,11 @@ import org.modelmapper.ModelMapper;
 public class FuncionarioDTO {
     private Long idLoja;
     private String nomeLoja;
+    private Long id;
+    private String nome;
+    private String telefone;
+    private String celular;
+    private String dataNascimento;
 
     public static FuncionarioDTO create(Funcionario funcionario){
 

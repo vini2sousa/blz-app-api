@@ -13,7 +13,6 @@ import org.modelmapper.ModelMapper;
 public class ProdutoDTO {
 
     private Long id;
-
     private String nome;
     private float valorCompra;
     private float valorVenda;
@@ -24,7 +23,7 @@ public class ProdutoDTO {
     private int quantidadeMin;
     private Long idLoja;
     private String nomeLoja;
-    private Long idFornecedor;
+    private Long IdFornecedor;
     private String nomeFornecedor;
 
     public static ProdutoDTO create(Produto produto) {

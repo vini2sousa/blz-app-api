@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @CrossOrigin
 
-public class CargoController {
+public class  CargoController {
 
     private final CargoService service;
     private final LojaService lojaService;

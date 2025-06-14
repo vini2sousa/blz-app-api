@@ -23,6 +23,7 @@ public class FornecerdorDTO {
     private String telefone;
     private String celular;
 
+
     public static  FornecerdorDTO create(Fornecedor fornecedor){
 
         ModelMapper modelMapper = new ModelMapper();

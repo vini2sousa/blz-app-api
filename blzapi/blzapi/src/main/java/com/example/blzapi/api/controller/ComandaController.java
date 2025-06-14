@@ -60,25 +60,17 @@ public class ComandaController {
         if(dto.getIdAgendamento() != null){
             Optional<Agendamento> agendamento = agendamentoService.getAgendamentoById(dto.getIdAgendamento());
             if(!agendamento.isPresent()){
-
                 comanda.setAgendamento(null);
-
             }else {
-
                 comanda.setAgendamento(agendamento.get());
-
             }
         }
         if(dto.getIdFormaPagamento() != null){
             Optional<FormaPagamento> formaPagamento = formaPagamentoService.getFormaPagamentoById(dto.getIdFormaPagamento());
             if(!formaPagamento.isPresent()){
-
                 comanda.setTipoPagamento(null);
-
             }else{
-
                 comanda.setTipoPagamento(formaPagamento.get());
-
             }
         }
         return comanda;

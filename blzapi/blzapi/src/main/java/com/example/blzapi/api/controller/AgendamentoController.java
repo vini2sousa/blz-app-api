@@ -1,9 +1,11 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
+import com.example.blzapi.api.dto.FornecerdorDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Comanda;
+import com.example.blzapi.model.entity.Fornecedor;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
@@ -13,7 +15,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,6 +29,12 @@ public class AgendamentoController {
 
     private final AgendamentoService service;
     private final LojaService lojaService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Agendamento> agendamentos = service.getAgendamentos();
+        return ResponseEntity.ok(agendamentos.stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {

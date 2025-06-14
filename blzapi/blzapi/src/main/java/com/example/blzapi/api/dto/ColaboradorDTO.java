@@ -13,6 +13,9 @@ public class ColaboradorDTO {
 
     private Long id;
     private String nome;
+    private String telefone;
+    private String celular;
+    private String dataNascimento;
 
     public static Object create(Colaborador colaborador) {
         ModelMapper modelMapper = new ModelMapper();
