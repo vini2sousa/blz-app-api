@@ -52,6 +52,20 @@ public class ComandaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ComandaDTO dto) {
+        if (!service.getComandaById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Comanda comanda = converter(dto);
+            comanda.setId(id);
+            service.salvar(comanda);
+            return ResponseEntity.ok(comanda);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     public Comanda converter(ComandaDTO dto){
 

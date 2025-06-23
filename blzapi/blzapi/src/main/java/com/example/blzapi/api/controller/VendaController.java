@@ -48,6 +48,20 @@ public class VendaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody VendaDTO dto) {
+        if (!service.getVendaById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Venda venda = converter(dto);
+            venda.setId(id);
+            service.salvar(venda);
+            return ResponseEntity.ok(venda);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Venda converter(VendaDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

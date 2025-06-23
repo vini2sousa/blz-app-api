@@ -56,6 +56,20 @@ public class ProdutoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDTO dto) {
+        if (!service.getProdutoById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Produto produto = converter(dto);
+            produto.setId(id);
+            service.salvar(produto);
+            return ResponseEntity.ok(produto);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Produto converter(ProdutoDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

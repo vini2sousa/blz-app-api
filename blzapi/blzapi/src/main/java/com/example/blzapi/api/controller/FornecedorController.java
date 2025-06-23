@@ -47,6 +47,20 @@ public class FornecedorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody FornecerdorDTO dto) {
+        if (!service.getFornecedorById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Fornecedor fornecedor = converter(dto);
+            fornecedor.setId(id);
+            service.salvar(fornecedor);
+            return ResponseEntity.ok(fornecedor);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Fornecedor converter(FornecerdorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

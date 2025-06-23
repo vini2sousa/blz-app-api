@@ -47,6 +47,20 @@ public class UsuarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody UsuarioDTO dto) {
+        if (!service.getUsuarioById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Usuario usuario = converter(dto);
+            usuario.setId(id);
+            service.salvar(usuario);
+            return ResponseEntity.ok(usuario);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Usuario converter(UsuarioDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

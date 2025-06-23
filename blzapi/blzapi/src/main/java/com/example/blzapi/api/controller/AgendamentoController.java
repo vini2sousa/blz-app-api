@@ -13,7 +13,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -25,6 +27,12 @@ public class AgendamentoController {
 
     private final AgendamentoService service;
     private final LojaService lojaService;
+
+    @GetMapping()
+    public ResponseEntity get() {
+        List<Agendamento> alunos = service.getAgendamentos();
+        return ResponseEntity.ok(alunos.stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {
@@ -40,6 +48,20 @@ public class AgendamentoController {
             Agendamento agendamento = converter(dto);
             agendamento = service.salvar(agendamento);
             return new ResponseEntity(agendamento, HttpStatus.CREATED);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody AgendamentoDTO dto) {
+        if (!service.getAgendamentoById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Agendamento agendamento = converter(dto);
+            agendamento.setId(id);
+            service.salvar(agendamento);
+            return ResponseEntity.ok(agendamento);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

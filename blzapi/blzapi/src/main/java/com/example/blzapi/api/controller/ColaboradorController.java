@@ -46,6 +46,20 @@ public class ColaboradorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ColaboradorDTO dto) {
+        if (!service.getColaboradorById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Colaborador colaborador = converter(dto);
+            colaborador.setId(id);
+            service.salvar(colaborador);
+            return ResponseEntity.ok(colaborador);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Colaborador converter(ColaboradorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

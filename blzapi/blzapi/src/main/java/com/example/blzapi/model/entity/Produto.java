@@ -28,7 +28,7 @@ public class Produto {
     @ManyToOne
     private Loja loja;
     @ManyToOne
-    private Usuario fornecedor;
+    private Fornecedor fornecedor;
 
 
 }

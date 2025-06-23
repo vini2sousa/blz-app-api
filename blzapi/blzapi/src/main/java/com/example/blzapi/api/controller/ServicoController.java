@@ -51,6 +51,20 @@ public class ServicoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ServicoDTO dto) {
+        if (!service.getServicoById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Servico servico = converter(dto);
+            servico.setId(id);
+            service.salvar(servico);
+            return ResponseEntity.ok(servico);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
 
     public Servico converter(ServicoDTO dto) {
         ModelMapper mapper = new ModelMapper();

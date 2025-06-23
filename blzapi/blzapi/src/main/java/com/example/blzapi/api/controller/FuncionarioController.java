@@ -53,6 +53,21 @@ public class FuncionarioController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody FuncionarioDTO dto) {
+        if (!service.getFuncionarioById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Funcionario funcionario = converter(dto);
+            funcionario.setId(id);
+            service.salvar(funcionario);
+            return ResponseEntity.ok(funcionario);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Funcionario converter(FuncionarioDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

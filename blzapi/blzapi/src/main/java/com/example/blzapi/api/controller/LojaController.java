@@ -47,6 +47,20 @@ public class LojaController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+    @PutMapping("{id}")
+    public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody LojaDTO dto) {
+        if (!service.getLojaById(id).isPresent()) {
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }
+        try {
+            Loja loja = converter(dto);
+            loja.setId(id);
+            service.salvar(loja);
+            return ResponseEntity.ok(loja);
+        } catch (RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
     public Loja converter(LojaDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
