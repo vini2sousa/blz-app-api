@@ -67,6 +67,24 @@ public class ComandaController {
         }
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Comanda> comanda = service.getComandaById(id);
+        if(!comanda.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(comanda.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
+    }
+
+
+
+
     public Comanda converter(ComandaDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

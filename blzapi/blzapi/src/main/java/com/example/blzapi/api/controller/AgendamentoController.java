@@ -8,6 +8,7 @@ import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,6 +68,21 @@ public class AgendamentoController {
         }
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Agendamento> agendamento = service.getAgendamentoById(id);
+        if(!agendamento.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(agendamento.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
+    }
+
     public Agendamento converter(AgendamentoDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
@@ -85,4 +101,7 @@ public class AgendamentoController {
 
         return agendamento;
     }
+
+
+
 }

@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.FornecerdorDTO;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Fornecedor;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
@@ -60,6 +61,21 @@ public class FornecedorController {
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Fornecedor> fornecedor = service.getFornecedorById(id);
+        if(!fornecedor.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(fornecedor.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
     }
     public Fornecedor converter(FornecerdorDTO dto){
 

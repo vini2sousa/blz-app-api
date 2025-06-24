@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.UsuarioDTO;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.service.UsuarioService;
 
@@ -60,6 +61,22 @@ public class UsuarioController {
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Usuario> usuario = service.getUsuarioById(id);
+        if(!usuario.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(usuario.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
     }
     public Usuario converter(UsuarioDTO dto){
 

@@ -2,6 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.LojaDTO;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,22 @@ public class LojaController {
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
+    }
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Loja> loja = service.getLojaById(id);
+        if(!loja.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(loja.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
     }
     public Loja converter(LojaDTO dto){
 

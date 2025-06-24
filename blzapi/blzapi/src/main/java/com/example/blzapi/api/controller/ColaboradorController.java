@@ -3,6 +3,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.ColaboradorDTO;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Colaborador;
 import com.example.blzapi.model.service.ColaboradorService;
 import lombok.RequiredArgsConstructor;
@@ -60,6 +61,23 @@ public class ColaboradorController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity excluir(@PathVariable("id") Long id){
+        Optional<Colaborador> colaborador = service.getColaboradorById(id);
+        if(!colaborador.isPresent()){
+            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+        }try{
+            service.excluir(colaborador.get());
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }catch(RegraNegocioException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+
+        }
+
+    }
+
+
     public Colaborador converter(ColaboradorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
