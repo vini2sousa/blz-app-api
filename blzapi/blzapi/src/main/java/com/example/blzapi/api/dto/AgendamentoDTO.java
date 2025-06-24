@@ -18,8 +18,8 @@ public class AgendamentoDTO {
     private Long idLoja;
     private String nomeLoja;
     private Long idComanda;
-    private Long idUsuario;
-    private String nomeUsuario;
+    private Long idFuncionario;
+    private String nomeFuncionario;
     private Long idCliente;
     private String nomeCliente;
 
@@ -28,6 +28,8 @@ public class AgendamentoDTO {
         ModelMapper modelMapper = new ModelMapper();
         AgendamentoDTO dto = modelMapper.map(agendamento, AgendamentoDTO.class);
         dto.nomeLoja = agendamento.getLoja().getNome();
+        dto.nomeFuncionario = agendamento.getFuncionario().getNome();
+        dto.nomeCliente = agendamento.getCliente().getUsuario().getNome();
         return dto;
 
     }

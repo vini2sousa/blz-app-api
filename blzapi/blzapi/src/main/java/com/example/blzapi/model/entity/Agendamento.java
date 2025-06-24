@@ -24,9 +24,8 @@ public class Agendamento {
     @OneToOne
     private Comanda comanda;
     @ManyToOne
-    private Usuario usuario;
-    @ManyToOne
     private ClienteLoja cliente;
-
+    @ManyToOne
+    private Funcionario funcionario;
 
 }
