@@ -1,10 +1,8 @@
 package com.example.blzapi.api.controller;
 
 
-import com.example.blzapi.api.dto.ComandaDTO;
 import com.example.blzapi.api.dto.FormaPagamentoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Comanda;
 import com.example.blzapi.model.entity.FormaPagamento;
 import com.example.blzapi.model.service.FormaPagamentoService;
 
@@ -35,11 +33,11 @@ public class FormaPagamentoController {
     }
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {
-        Optional<FormaPagamento> aluno = service.getFormaPagamentoById(id);
-        if (!aluno.isPresent()) {
+        Optional<FormaPagamento> formaPagamento = service.getFormaPagamentoById(id);
+        if (!formaPagamento.isPresent()) {
             return new ResponseEntity("Forma de pagamento não encontrado", HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(aluno.map(FormaPagamentoDTO::create));
+        return ResponseEntity.ok(formaPagamento.map(FormaPagamentoDTO::create));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody FormaPagamentoDTO dto) {
