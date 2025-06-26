@@ -15,16 +15,17 @@ public class Agendamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private long id;
+    private Long id;
 
     private String horario;
     private String data;
+    @ManyToOne
     private Loja loja;
+    @OneToOne
     private Comanda comanda;
     @ManyToOne
-    private Usuario usuario;
     private ClienteLoja cliente;
-
+    @ManyToOne
+    private Funcionario funcionario;
 
 }

@@ -14,8 +14,8 @@ public class ProdutoUtilizado{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private long id;
     @ManyToOne
     private Servico servicos;
     @ManyToOne

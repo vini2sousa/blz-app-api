@@ -16,6 +16,10 @@ import javax.persistence.Id;
 
 public class Fornecedor{
 
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
+
         private boolean tipoEntidade;
         private String cnpj;
         private String cpf;

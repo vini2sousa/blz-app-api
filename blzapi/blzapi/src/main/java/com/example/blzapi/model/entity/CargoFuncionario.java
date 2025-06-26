@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class CargoFuncionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne
     private Cargo cargo;
