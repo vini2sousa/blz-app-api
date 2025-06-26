@@ -1,5 +1,6 @@
 package com.example.blzapi.model.service;
 
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Cargo;
 import com.example.blzapi.model.repository.CargoRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class CargoService {
 
     @Transactional
     public Cargo salvar(Cargo cargo) {
-
+        validar(cargo);
         return repository.save(cargo);
     }
 
@@ -35,5 +36,13 @@ public class CargoService {
     public void excluir(Cargo cargo) {
         Objects.requireNonNull(cargo.getId());
         repository.delete(cargo);
+    }
+    public void validar(Cargo cargo) {
+        if(cargo.getNome().trim().equals("") || cargo.getNome()==null) {
+            throw new RegraNegocioException("Nome invalido");
+        }
+        if(cargo.getLoja() == null || cargo.getLoja().getId() == null || cargo.getLoja().getId()==0) {
+            throw new RegraNegocioException("Loja invalido");
+        }
     }
 }

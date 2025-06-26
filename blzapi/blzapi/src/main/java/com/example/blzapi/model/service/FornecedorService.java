@@ -1,5 +1,6 @@
 package com.example.blzapi.model.service;
 
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Fornecedor;
 import com.example.blzapi.model.repository.FornecedorRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class FornecedorService {
 
     @Transactional
     public Fornecedor salvar(Fornecedor fornecedor) {
-
+        validar(fornecedor);
         return repository.save(fornecedor);
     }
 
@@ -35,5 +36,16 @@ public class FornecedorService {
     public void excluir(Fornecedor fornecedor) {
         Objects.requireNonNull(fornecedor.getId());
         repository.delete(fornecedor);
+    }
+    public void validar(Fornecedor fornecedor) {
+        if (fornecedor.getNome()==null || fornecedor.getNome().trim().equals("")) {
+            throw new RegraNegocioException("Nome Invalido");
+        }
+        if (fornecedor.getCnpj()!=null){
+            fornecedor.setCpf(null);
+        }
+        if ((fornecedor.getCnpj() == null || fornecedor.getCnpj().trim().equals("")) && (fornecedor.getCpf() == null || fornecedor.getCpf().trim().equals(""))) {
+            throw new RegraNegocioException("CNPJ ou CPF não cadastrado");
+        }
     }
 }

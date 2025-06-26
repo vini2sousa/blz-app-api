@@ -20,6 +20,7 @@ public class Comanda{
     @ManyToOne
     private FormaPagamento tipoPagamento;
     private String horario;
+    private String Data;
     @OneToOne
     private Agendamento agendamento;
 }

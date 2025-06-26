@@ -1,5 +1,6 @@
 package com.example.blzapi.model.service;
 
+import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
@@ -27,7 +28,7 @@ public class UsuarioService {
 
     @Transactional
     public Usuario salvar(Usuario usuario) {
-
+        validar(usuario);
         return repository.save(usuario);
     }
 
@@ -35,5 +36,26 @@ public class UsuarioService {
     public void excluir(Usuario usuario) {
         Objects.requireNonNull(usuario.getId());
         repository.delete(usuario);
+    }
+    public void validar(Usuario usuario) {
+        if (usuario.getNome() == null || usuario.getNome().trim().equals("")) {
+            throw new RegraNegocioException("Nome do usuário inválido");
+        }
+        if ((usuario.getTelefone() == null || usuario.getTelefone().trim().equals("")) &&
+                (usuario.getCelular() == null || usuario.getCelular().trim().equals(""))) {
+            throw new RegraNegocioException("Telefone ou celular deve ser informado");
+        }
+        if (usuario.getDataNascimento() == null || usuario.getDataNascimento().trim().equals("")) {
+            throw new RegraNegocioException("Data de nascimento inválida");
+        }
+        if (usuario.getEmail() == null || usuario.getEmail().trim().equals("")) {
+            throw new RegraNegocioException("Email inválido");
+        }
+        if (usuario.getCpf() == null || usuario.getCpf().trim().equals("")) {
+            throw new RegraNegocioException("CPF inválido");
+        }
+        if (usuario.getSenha() == null || usuario.getSenha().trim().equals("")) {
+            throw new RegraNegocioException("Senha inválida");
+        }
     }
 }
