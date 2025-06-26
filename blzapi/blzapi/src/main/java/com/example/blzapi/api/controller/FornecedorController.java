@@ -51,7 +51,7 @@ public class FornecedorController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody FornecerdorDTO dto) {
         if (!service.getFornecedorById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Fornecedor não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Fornecedor fornecedor = converter(dto);
@@ -67,7 +67,7 @@ public class FornecedorController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Fornecedor> fornecedor = service.getFornecedorById(id);
         if(!fornecedor.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Fornecedor não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(fornecedor.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);

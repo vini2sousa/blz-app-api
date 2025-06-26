@@ -59,7 +59,7 @@ public class ProdutoController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDTO dto) {
         if (!service.getProdutoById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Produto não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Produto produto = converter(dto);
@@ -76,7 +76,7 @@ public class ProdutoController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Produto> produto = service.getProdutoById(id);
         if(!produto.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Produto não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(produto.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);
