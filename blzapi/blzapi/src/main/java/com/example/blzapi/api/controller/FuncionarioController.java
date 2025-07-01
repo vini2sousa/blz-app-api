@@ -57,7 +57,7 @@ public class FuncionarioController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody FuncionarioDTO dto) {
         if (!service.getFuncionarioById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Funcionario funcionario = converter(dto);
@@ -73,7 +73,7 @@ public class FuncionarioController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Funcionario> funcionario = service.getFuncionarioById(id);
         if(!funcionario.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(funcionario.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);

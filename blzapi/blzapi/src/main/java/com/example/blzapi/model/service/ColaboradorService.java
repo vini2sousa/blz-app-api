@@ -49,7 +49,7 @@ public class ColaboradorService {
             throw new RegraNegocioException("Data de nascimento inválida");
         }
         if(colaborador.getLoja()==null || colaborador.getLoja().getId()==null || colaborador.getLoja().getId()==0){
-            throw new RegraNegocioException("Loja deve ser informado");
+            throw new RegraNegocioException("Loja deve ser informada");
         }
     }
 }

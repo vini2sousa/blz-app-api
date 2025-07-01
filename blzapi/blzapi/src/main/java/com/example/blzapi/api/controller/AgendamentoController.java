@@ -56,7 +56,7 @@ public class AgendamentoController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody AgendamentoDTO dto) {
         if (!service.getAgendamentoById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Agendamento não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Agendamento agendamento = converter(dto);

@@ -39,10 +39,10 @@ public class CargoService {
     }
     public void validar(Cargo cargo) {
         if(cargo.getNome().trim().equals("") || cargo.getNome()==null) {
-            throw new RegraNegocioException("Nome invalido");
+            throw new RegraNegocioException("Nome invalida");
         }
         if(cargo.getLoja() == null || cargo.getLoja().getId() == null || cargo.getLoja().getId()==0) {
-            throw new RegraNegocioException("Loja invalido");
+            throw new RegraNegocioException("Loja invalida");
         }
     }
 }

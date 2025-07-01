@@ -54,7 +54,7 @@ public class ServicoController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ServicoDTO dto) {
         if (!service.getServicoById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Serviço não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Servico servico = converter(dto);

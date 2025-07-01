@@ -55,7 +55,7 @@ public class ComandaController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ComandaDTO dto) {
         if (!service.getComandaById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Comanda não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Comanda comanda = converter(dto);
@@ -71,7 +71,7 @@ public class ComandaController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Comanda> comanda = service.getComandaById(id);
         if(!comanda.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Comanda não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(comanda.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);

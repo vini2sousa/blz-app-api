@@ -42,7 +42,7 @@ public class ComandaService {
             throw new RegraNegocioException("Horario Invalido");
         }
         if(comanda.getData() == null || comanda.getData().trim().equals("")){
-            throw new RegraNegocioException("Data Invalido");
+            throw new RegraNegocioException("Data Invalida");
         }
         if (comanda.getTipoPagamento()== null || comanda.getTipoPagamento().getId()==null || comanda.getTipoPagamento().getId()==0) {
             throw new RegraNegocioException("Tipo Pagamento Invalido");

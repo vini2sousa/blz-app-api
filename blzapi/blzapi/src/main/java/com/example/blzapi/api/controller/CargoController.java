@@ -58,7 +58,7 @@ public class CargoController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody CargoDTO dto) {
         if (!service.getCargoById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Cargo cargo = converter(dto);
@@ -74,7 +74,7 @@ public class CargoController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Cargo> cargo = service.getCargoById(id);
         if(!cargo.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(cargo.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);

@@ -51,7 +51,7 @@ public class UsuarioController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody UsuarioDTO dto) {
         if (!service.getUsuarioById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Usuario usuario = converter(dto);
@@ -68,7 +68,7 @@ public class UsuarioController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Usuario> usuario = service.getUsuarioById(id);
         if(!usuario.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(usuario.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);

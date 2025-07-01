@@ -50,7 +50,7 @@ public class ColaboradorController {
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody ColaboradorDTO dto) {
         if (!service.getColaboradorById(id).isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Colaborador não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
             Colaborador colaborador = converter(dto);
@@ -66,7 +66,7 @@ public class ColaboradorController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Colaborador> colaborador = service.getColaboradorById(id);
         if(!colaborador.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Colaborador não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(colaborador.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);
