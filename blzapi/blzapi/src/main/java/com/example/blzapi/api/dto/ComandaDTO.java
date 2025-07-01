@@ -15,6 +15,7 @@ public class ComandaDTO {
     private  String formaTipoPagamento;
     private String horario;
     private Long idAgendamento;
+    private String data;
 
     public static ComandaDTO create(Comanda comanda){
 

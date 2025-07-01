@@ -11,12 +11,19 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class ColaboradorDTO {
 
-    private Long id;
+
     private String nome;
+    private String cpf;
+    private String email;
+    private String dataNascimento;
+    private String celular;
+    private Long idLoja;
+    private String nomeLoja;
 
     public static Object create(Colaborador colaborador) {
         ModelMapper modelMapper = new ModelMapper();
-        FornecerdorDTO dto = modelMapper.map(colaborador,FornecerdorDTO.class);
+        ColaboradorDTO dto = modelMapper.map(colaborador, ColaboradorDTO.class);
+        dto.nomeLoja = colaborador.getLoja().getNome();
         return dto;
     }
 }
