@@ -42,7 +42,7 @@ public class ProdutoController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Produto> aluno = service.getProdutoById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Produto não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(ProdutoDTO::create));
     }

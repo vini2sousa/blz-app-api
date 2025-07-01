@@ -38,7 +38,7 @@ public class ComandaController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Comanda> aluno = service.getComandaById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("Comanda não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Comanda não encontrada", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(ComandaDTO::create));
     }

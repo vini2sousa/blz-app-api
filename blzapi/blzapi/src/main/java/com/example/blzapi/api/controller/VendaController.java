@@ -34,7 +34,7 @@ public class VendaController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Venda> aluno = service.getVendaById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Venda não encontrada", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(VendaDTO::create));
     }

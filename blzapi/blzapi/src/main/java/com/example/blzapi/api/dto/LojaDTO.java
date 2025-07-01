@@ -1,6 +1,5 @@
 package com.example.blzapi.api.dto;
 
-import com.example.blzapi.model.entity.Comanda;
 import com.example.blzapi.model.entity.Loja;
 import lombok.AllArgsConstructor;
 import lombok.Data;

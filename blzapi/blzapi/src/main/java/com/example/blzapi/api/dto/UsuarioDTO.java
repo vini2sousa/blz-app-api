@@ -1,6 +1,5 @@
 package com.example.blzapi.api.dto;
 
-import com.example.blzapi.model.entity.Funcionario;
 import com.example.blzapi.model.entity.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -35,7 +35,7 @@ public class FormaPagamentoController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<FormaPagamento> formaPagamento = service.getFormaPagamentoById(id);
         if (!formaPagamento.isPresent()) {
-            return new ResponseEntity("Forma de pagamento não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Forma de pagamento não encontrada", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(formaPagamento.map(FormaPagamentoDTO::create));
     }

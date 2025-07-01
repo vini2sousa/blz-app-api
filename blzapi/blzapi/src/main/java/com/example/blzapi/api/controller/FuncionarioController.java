@@ -39,7 +39,7 @@ public class FuncionarioController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Funcionario> aluno = service.getFuncionarioById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("funcionario não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(FuncionarioDTO::create));
     }

@@ -53,5 +53,6 @@ public class AgendamentoService {
         if (agendamento.getFuncionario() == null || agendamento.getFuncionario().getId() == null || agendamento.getFuncionario().getId() == 0) {
             throw new RegraNegocioException("Funcionario inválido");
         }
+
     }
 }

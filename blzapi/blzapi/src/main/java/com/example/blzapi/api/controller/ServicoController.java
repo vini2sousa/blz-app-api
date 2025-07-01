@@ -37,7 +37,7 @@ public class ServicoController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Servico> aluno = service.getServicoById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Servico não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(ServicoDTO::create));
     }

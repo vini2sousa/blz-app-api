@@ -1,5 +1,7 @@
 package com.example.blzapi.model.service;
 
+import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.FormaPagamento;
 import com.example.blzapi.model.entity.Venda;
 import com.example.blzapi.model.repository.VendaRepository;
 import org.springframework.stereotype.Service;
@@ -36,4 +38,7 @@ public class VendaService {
         Objects.requireNonNull(venda.getId());
         repository.delete(venda);
     }
+
+
+
 }

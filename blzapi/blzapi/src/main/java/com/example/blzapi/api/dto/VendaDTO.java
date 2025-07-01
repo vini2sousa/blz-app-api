@@ -1,15 +1,11 @@
 package com.example.blzapi.api.dto;
 
-import com.example.blzapi.model.entity.FormaPagamento;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.entity.Venda;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
-import javax.persistence.ManyToOne;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

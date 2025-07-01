@@ -34,7 +34,7 @@ public class LojaController {
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Loja> aluno = service.getLojaById(id);
         if (!aluno.isPresent()) {
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Loja não encontrada", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(LojaDTO::create));
     }
