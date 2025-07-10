@@ -4,9 +4,11 @@ import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.ServicoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.Agendamento;
+import com.example.blzapi.model.entity.Cargo;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Servico;
 import com.example.blzapi.model.service.AgendamentoService;
+import com.example.blzapi.model.service.CargoService;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ServicoService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ public class ServicoController {
 
     private final ServicoService service;
     private final LojaService lojaService;
+    private final CargoService cargoService;
 
     @GetMapping()
     public ResponseEntity get() {
@@ -71,7 +74,7 @@ public class ServicoController {
     public ResponseEntity excluir(@PathVariable("id") Long id){
         Optional<Servico> servico = service.getServicoById(id);
         if(!servico.isPresent()){
-            return new ResponseEntity("Aluno não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Serviço não encontrado", HttpStatus.NOT_FOUND);
         }try{
             service.excluir(servico.get());
             return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -92,6 +95,13 @@ public class ServicoController {
                 servico.setLoja(null);
             }else {
                 servico.setLoja(loja.get());
+            }
+        }   if(dto.getIdCargo() != null){
+            Optional<Cargo> cargo = cargoService.getCargoById(dto.getIdCargo());
+            if(!cargo.isPresent()){
+                servico.setLoja(null);
+            }else {
+                servico.setCargo(cargo.get());
             }
         }
         return servico;
