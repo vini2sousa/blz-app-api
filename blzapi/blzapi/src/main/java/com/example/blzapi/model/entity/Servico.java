@@ -24,4 +24,6 @@ public class Servico {
     private float desconto;
     @ManyToOne
     private Loja loja;
+    @ManyToOne
+    private Cargo cargo;
 }
