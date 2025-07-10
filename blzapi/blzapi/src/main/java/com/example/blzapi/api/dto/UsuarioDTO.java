@@ -9,10 +9,10 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UsuarioDTO {
+    private Long id;
     private String nome;
     private String email;
     private String cpf;
-    private String senha;
     private String celular;
     private String telefone;
     private String dataNascimento;

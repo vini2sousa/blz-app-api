@@ -54,8 +54,6 @@ public class UsuarioService {
         if (usuario.getCpf() == null || usuario.getCpf().trim().equals("")) {
             throw new RegraNegocioException("CPF inválido");
         }
-        if (usuario.getSenha() == null || usuario.getSenha().trim().equals("")) {
-            throw new RegraNegocioException("Senha inválida");
-        }
+
     }
 }

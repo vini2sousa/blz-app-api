@@ -18,6 +18,7 @@ public class FuncionarioDTO {
     private String celular;
     private Long idLoja;
     private String nomeLoja;
+    private String telefone;
 
     public static FuncionarioDTO create(Funcionario funcionario){
 

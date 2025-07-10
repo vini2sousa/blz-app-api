@@ -16,8 +16,6 @@ import javax.persistence.Id;
 public class Usuario extends Pessoa {
 
     private String email;
-    private String cpf;
-    private String senha;
 
 
 }

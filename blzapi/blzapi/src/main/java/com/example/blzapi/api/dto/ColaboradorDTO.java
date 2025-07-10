@@ -20,6 +20,7 @@ public class ColaboradorDTO {
     private Long idLoja;
     private String nomeLoja;
 
+
     public static Object create(Colaborador colaborador) {
         ModelMapper modelMapper = new ModelMapper();
         ColaboradorDTO dto = modelMapper.map(colaborador, ColaboradorDTO.class);

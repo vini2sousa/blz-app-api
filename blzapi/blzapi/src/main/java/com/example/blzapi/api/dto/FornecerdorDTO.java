@@ -22,6 +22,7 @@ public class FornecerdorDTO {
     private String nome;
     private String telefone;
     private String celular;
+    private String email;
 
     public static  FornecerdorDTO create(Fornecedor fornecedor){
 
