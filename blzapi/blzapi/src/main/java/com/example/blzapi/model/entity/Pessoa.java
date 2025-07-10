@@ -21,5 +21,6 @@ public class Pessoa {
     private String telefone;
     private String celular;
     private String dataNascimento;
+    private String cpf;
 
 }
