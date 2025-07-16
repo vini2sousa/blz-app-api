@@ -19,7 +19,7 @@ public class ColaboradorDTO {
     private String celular;
     private Long idLoja;
     private String nomeLoja;
-
+    private String telefone;
 
     public static Object create(Colaborador colaborador) {
         ModelMapper modelMapper = new ModelMapper();

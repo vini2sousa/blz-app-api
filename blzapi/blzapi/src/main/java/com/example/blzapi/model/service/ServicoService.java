@@ -50,8 +50,6 @@ public class ServicoService {
         if (servico.getComissao() < 0) {
             throw new RegraNegocioException("Comissão não pode ser negativa");
         }
-        if (servico.getLoja() == null || servico.getLoja().getId() == null || servico.getLoja().getId() == 0) {
-            throw new RegraNegocioException("Loja inválida");
-        }
+
     }
 }
