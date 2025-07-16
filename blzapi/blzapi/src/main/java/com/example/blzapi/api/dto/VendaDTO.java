@@ -15,7 +15,7 @@ public class VendaDTO {
 
     private Long idFormaPagamento;
     private String nomeFormaPagamento;
-    private String data;
+    private String dataVenda;
     private String horario;
     private Long idLoja;
     private String nomeLoja;

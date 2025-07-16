@@ -18,7 +18,7 @@ public class Agendamento {
     private Long id;
 
     private String horario;
-    private String data;
+    private String dataAgendamento;
     @ManyToOne
     private Loja loja;
     @OneToOne

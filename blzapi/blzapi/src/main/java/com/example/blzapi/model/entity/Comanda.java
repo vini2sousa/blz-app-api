@@ -18,9 +18,9 @@ public class Comanda{
     private Long id;
 
     @ManyToOne
-    private FormaPagamento tipoPagamento;
+    private FormaPagamento formaPagamento;
     private String horario;
-    private String Data;
+    private String dataComanda;
     @OneToOne
     private Agendamento agendamento;
 }

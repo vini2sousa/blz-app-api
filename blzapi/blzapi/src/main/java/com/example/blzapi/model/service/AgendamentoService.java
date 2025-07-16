@@ -41,8 +41,8 @@ public class AgendamentoService {
         if (agendamento.getHorario() == null || agendamento.getHorario().trim().equals("")) {
             throw new RegraNegocioException("Horario inválida");
         }
-        if (agendamento.getData() == null || agendamento.getData().trim().equals("")) {
-            throw new RegraNegocioException("Data inválido");
+        if (agendamento.getDataAgendamento() == null || agendamento.getDataAgendamento().trim().equals("")) {
+            throw new RegraNegocioException("Data inválida");
         }
         if (agendamento.getLoja() == null || agendamento.getLoja().getId() == null || agendamento.getLoja().getId() == 0) {
             throw new RegraNegocioException("Loja inválido");

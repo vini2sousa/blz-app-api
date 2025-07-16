@@ -105,11 +105,11 @@ public class ComandaController {
             Optional<FormaPagamento> formaPagamento = formaPagamentoService.getFormaPagamentoById(dto.getIdFormaPagamento());
             if(!formaPagamento.isPresent()){
 
-                comanda.setTipoPagamento(null);
+                comanda.setFormaPagamento(null);
 
             }else{
 
-                comanda.setTipoPagamento(formaPagamento.get());
+                comanda.setFormaPagamento(formaPagamento.get());
 
             }
         }

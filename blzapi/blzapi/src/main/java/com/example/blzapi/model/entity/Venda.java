@@ -19,7 +19,7 @@ public class Venda {
 
     @ManyToOne
     private FormaPagamento formaPagamento;
-    private String data;
+    private String dataVenda;
     private String horario;
     @ManyToOne
     private Loja loja;

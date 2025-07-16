@@ -14,7 +14,7 @@ public class AgendamentoDTO {
 
     private Long id;
     private String horario;
-    private String data;
+    private String dataAgendamento;
     private Long idLoja;
     private String nomeLoja;
     private Long idComanda;
