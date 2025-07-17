@@ -27,7 +27,7 @@ public class VendaDTO {
         ModelMapper modelMapper = new ModelMapper();
         VendaDTO dto = modelMapper.map(venda, VendaDTO.class);
         dto.nomeFormaPagamento = venda.getFormaPagamento().getNome();
-        dto.nomeLoja = venda.getFormaPagamento().getNome();
+        dto.nomeLoja = venda.getLoja().getNome();
         dto.nomeUsuario = venda.getUsuario().getNome();
         return dto;
     };

@@ -47,8 +47,6 @@ public class ComandaService {
         if (comanda.getFormaPagamento()== null || comanda.getFormaPagamento().getId()==null || comanda.getFormaPagamento().getId()==0) {
             throw new RegraNegocioException("Tipo Pagamento Invalido");
         }
-        if(comanda.getAgendamento() ==null || comanda.getAgendamento().getId()==null || comanda.getAgendamento().getId()==0) {
-            throw new RegraNegocioException("Agendamento Invalido");
-        }
+
     }
 }
