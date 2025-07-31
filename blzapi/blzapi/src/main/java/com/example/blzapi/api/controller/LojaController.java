@@ -1,9 +1,8 @@
 package com.example.blzapi.api.controller;
 
-import com.example.blzapi.api.dto.LojaDTO;
+import com.example.blzapi.api.dto.*;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Loja;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -32,12 +31,58 @@ public class LojaController {
     }
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {
-        Optional<Loja> aluno = service.getLojaById(id);
-        if (!aluno.isPresent()) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
             return new ResponseEntity("Loja não encontrada", HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(aluno.map(LojaDTO::create));
+        return ResponseEntity.ok(loja.map(LojaDTO::create));
     }
+    @GetMapping("/{id}/produtos")
+    public ResponseEntity getProdutos(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Produto> produtos = loja.get().getProdutos();
+        return ResponseEntity.ok(produtos.stream().map(ProdutoDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/vendas")
+    public ResponseEntity getVendas(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Venda> vendas = loja.get().getVendas();
+        return ResponseEntity.ok(vendas.stream().map(VendaDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/funcionarios")
+    public ResponseEntity getFuncionarios(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Funcionario> funcionarios = loja.get().getFuncionarios();
+        return ResponseEntity.ok(funcionarios.stream().map(FuncionarioDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/cargos")
+    public ResponseEntity getCargos(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Cargo> cargos = loja.get().getCargos();
+        return ResponseEntity.ok(cargos.stream().map(CargoDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/Agendamentos")
+    public ResponseEntity getAgendamentos(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Agendamento> agendamentos = loja.get().getAgendamentos();
+        return ResponseEntity.ok(agendamentos.stream().map(AgendamentoDTO::create).collect(Collectors.toList()));
+    }
+
     @PostMapping()
     public ResponseEntity post(@RequestBody LojaDTO dto) {
         try {

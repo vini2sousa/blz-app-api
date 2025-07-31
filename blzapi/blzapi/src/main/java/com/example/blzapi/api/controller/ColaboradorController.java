@@ -2,9 +2,12 @@ package com.example.blzapi.api.controller;
 
 
 import com.example.blzapi.api.dto.ColaboradorDTO;
+import com.example.blzapi.api.dto.LojaDTO;
+import com.example.blzapi.api.dto.ServicoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Colaborador;
+import com.example.blzapi.model.entity.Loja;
+import com.example.blzapi.model.entity.Servico;
 import com.example.blzapi.model.service.ColaboradorService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -36,6 +39,15 @@ public class ColaboradorController {
             return new ResponseEntity("Colaborador não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(Colaborador.map(ColaboradorDTO::create));
+    }
+    @GetMapping("/{id}/lojas")
+    public ResponseEntity getLoja(@PathVariable("id") Long id) {
+        Optional<Colaborador> Colaborador = service.getColaboradorById(id);
+        if (!Colaborador.isPresent()) {
+            return new ResponseEntity("Colaborador não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Loja> lojas = Colaborador.get().getLojas();
+        return ResponseEntity.ok(lojas.stream().map(LojaDTO::create).collect(Collectors.toList()));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody ColaboradorDTO dto) {

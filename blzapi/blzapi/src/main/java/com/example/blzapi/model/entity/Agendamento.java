@@ -1,10 +1,12 @@
 package com.example.blzapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,8 +26,13 @@ public class Agendamento {
     @OneToOne
     private Comanda comanda;
     @ManyToOne
-    private ClienteLoja cliente;
-    @ManyToOne
     private Funcionario funcionario;
+    @ManyToOne
+    private ClienteLoja cliente;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "agendamento")
+    private List<OrdemServicos> servico;
+
 
 }

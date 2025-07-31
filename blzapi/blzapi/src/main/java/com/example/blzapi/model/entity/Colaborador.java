@@ -1,11 +1,10 @@
 package com.example.blzapi.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -13,5 +12,7 @@ import javax.persistence.Id;
 
 public class Colaborador extends Funcionario {
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "colaborador")
+    private List<Loja> lojas;
 }

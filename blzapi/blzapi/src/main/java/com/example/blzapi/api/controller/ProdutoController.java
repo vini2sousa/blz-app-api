@@ -3,10 +3,7 @@ package com.example.blzapi.api.controller;
 import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.ProdutoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Fornecedor;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.entity.Produto;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
@@ -47,6 +44,16 @@ public class ProdutoController {
         }
         return ResponseEntity.ok(aluno.map(ProdutoDTO::create));
     }
+    /*@GetMapping("/{id}/alunos")
+    public ResponseEntity getProdutosUtilizados(@PathVariable("id") Long id) {
+        Optional<Produto> produto = service.getProdutoById(id);
+        if (!produto.isPresent()) {
+            return new ResponseEntity("Curso não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ProdutoUtilizado> alunos = produto.get().getServico();
+        return ResponseEntity.ok(alunos.stream().map(AlunoDTO::create).collect(Collectors.toList()));
+    }*/
+
     @PostMapping()
     public ResponseEntity post(@RequestBody ProdutoDTO dto) {
         try {

@@ -1,9 +1,10 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.FornecerdorDTO;
+import com.example.blzapi.api.dto.ProdutoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
 import com.example.blzapi.model.entity.Fornecedor;
+import com.example.blzapi.model.entity.Produto;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,16 @@ public class FornecedorController {
         }
         return ResponseEntity.ok(aluno.map(FornecerdorDTO::create));
     }
+    @GetMapping("/{id}/produto")
+    public ResponseEntity getProduto(@PathVariable("id") Long id) {
+        Optional<Fornecedor> fornecedor = service.getFornecedorById(id);
+        if (!fornecedor.isPresent()) {
+            return new ResponseEntity("Fornecedor não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<Produto> alunos = fornecedor.get().getProduto();
+        return ResponseEntity.ok(alunos.stream().map(ProdutoDTO::create).collect(Collectors.toList()));
+    }
+
     @PostMapping()
     public ResponseEntity post(@RequestBody FornecerdorDTO dto) {
         try {
