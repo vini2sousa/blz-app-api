@@ -1,4 +1,7 @@
 package com.example.blzapi.model.repository;
 
-public interface OrdemVendas {
+import com.example.blzapi.model.entity.OrdemServicos;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrdemServicosRepository extends JpaRepository<OrdemServicos,Long> {
 }

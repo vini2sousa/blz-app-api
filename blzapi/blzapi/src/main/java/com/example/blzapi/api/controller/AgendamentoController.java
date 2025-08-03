@@ -1,10 +1,9 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
+import com.example.blzapi.api.dto.OrdemServicosDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Comanda;
-import com.example.blzapi.model.entity.Loja;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +41,15 @@ public class AgendamentoController {
             return new ResponseEntity("Agendamento não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(AgendamentoDTO::create));
+    }
+    @GetMapping("/{id}/ordemServicos")
+    public ResponseEntity getOrdemServico(@PathVariable("id") Long id) {
+        Optional<Agendamento> agendamento = service.getAgendamentoById(id);
+        if (!agendamento.isPresent()) {
+            return new ResponseEntity("Agendamento não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<OrdemServicos> ordemServico = agendamento.get().getServico();
+        return ResponseEntity.ok(ordemServico.stream().map(OrdemServicosDTO::create).collect(Collectors.toList()));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody AgendamentoDTO dto) {

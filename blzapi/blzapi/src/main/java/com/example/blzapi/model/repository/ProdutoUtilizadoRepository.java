@@ -1,4 +1,7 @@
 package com.example.blzapi.model.repository;
 
-public interface ProdutoUtilizado {
+import com.example.blzapi.model.entity.ProdutoUtilizado;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ProdutoUtilizadoRepository extends JpaRepository<ProdutoUtilizado,Long> {
 }

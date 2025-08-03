@@ -1,12 +1,11 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
+import com.example.blzapi.api.dto.OrdemServicosDTO;
+import com.example.blzapi.api.dto.ProdutoUtilizadoDTO;
 import com.example.blzapi.api.dto.ServicoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Cargo;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.entity.Servico;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.CargoService;
 import com.example.blzapi.model.service.LojaService;
@@ -84,7 +83,24 @@ public class ServicoController {
         }
 
     }
-
+    @GetMapping("/{id}/produtoUtilizados")
+    public ResponseEntity getProdutoUtilizado(@PathVariable("id") Long id) {
+        Optional<Servico> servico = service.getServicoById(id);
+        if (!servico.isPresent()) {
+            return new ResponseEntity("Servico não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ProdutoUtilizado> produtoUtilizados = servico.get().getProduto();
+        return ResponseEntity.ok(produtoUtilizados.stream().map(ProdutoUtilizadoDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/ordemServicos")
+    public ResponseEntity getOrdemServico(@PathVariable("id") Long id) {
+        Optional<Servico> servico = service.getServicoById(id);
+        if (!servico.isPresent()) {
+            return new ResponseEntity("Servico não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<OrdemServicos> ordemServico = servico.get().getAgendamento();
+        return ResponseEntity.ok(ordemServico.stream().map(OrdemServicosDTO::create).collect(Collectors.toList()));
+    }
     public Servico converter(ServicoDTO dto) {
         ModelMapper mapper = new ModelMapper();
         Servico servico = mapper.map(dto, Servico.class);

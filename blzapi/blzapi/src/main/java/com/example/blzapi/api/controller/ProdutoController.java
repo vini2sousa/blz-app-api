@@ -1,7 +1,9 @@
 package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.AgendamentoDTO;
+import com.example.blzapi.api.dto.ItemVendasDTO;
 import com.example.blzapi.api.dto.ProdutoDTO;
+import com.example.blzapi.api.dto.ProdutoUtilizadoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.AgendamentoService;
@@ -44,15 +46,24 @@ public class ProdutoController {
         }
         return ResponseEntity.ok(aluno.map(ProdutoDTO::create));
     }
-    /*@GetMapping("/{id}/alunos")
-    public ResponseEntity getProdutosUtilizados(@PathVariable("id") Long id) {
+    @GetMapping("/{id}/itemVendas")
+    public ResponseEntity getItemVendas(@PathVariable("id") Long id) {
         Optional<Produto> produto = service.getProdutoById(id);
         if (!produto.isPresent()) {
-            return new ResponseEntity("Curso não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Produto não encontrado", HttpStatus.NOT_FOUND);
         }
-        List<ProdutoUtilizado> alunos = produto.get().getServico();
-        return ResponseEntity.ok(alunos.stream().map(AlunoDTO::create).collect(Collectors.toList()));
-    }*/
+        List<ItemVendas> itemVendas = produto.get().getVendas();
+        return ResponseEntity.ok(itemVendas.stream().map(ItemVendasDTO::create).collect(Collectors.toList()));
+    }
+    @GetMapping("/{id}/produtoUtilizado")
+    public ResponseEntity getProdutoUtilizado(@PathVariable("id") Long id) {
+        Optional<Produto> produto = service.getProdutoById(id);
+        if (!produto.isPresent()) {
+            return new ResponseEntity("Produto não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ProdutoUtilizado> produtoUtilizados = produto.get().getServico();
+        return ResponseEntity.ok(produtoUtilizados.stream().map(ProdutoUtilizadoDTO::create).collect(Collectors.toList()));
+    }
 
     @PostMapping()
     public ResponseEntity post(@RequestBody ProdutoDTO dto) {

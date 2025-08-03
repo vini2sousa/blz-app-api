@@ -1,8 +1,10 @@
 package com.example.blzapi.api.controller;
 
+import com.example.blzapi.api.dto.ClienteLojaDTO;
 import com.example.blzapi.api.dto.UsuarioDTO;
 import com.example.blzapi.api.dto.VendaDTO;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.model.entity.ClienteLoja;
 import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.entity.Venda;
 import com.example.blzapi.model.service.UsuarioService;
@@ -38,6 +40,15 @@ public class UsuarioController {
             return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(usuario.map(UsuarioDTO::create));
+    }
+    @GetMapping("/{id}/ClienteLojas")
+    public ResponseEntity getClienteLojas(@PathVariable("id") Long id) {
+        Optional<Usuario> usuario = service.getUsuarioById(id);
+        if (!usuario.isPresent()) {
+            return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ClienteLoja> clienteLojas = usuario.get().getClienteLojas();
+        return ResponseEntity.ok(clienteLojas.stream().map(ClienteLojaDTO::create).collect(Collectors.toList()));
     }
     @GetMapping("/{id}/vendas")
     public ResponseEntity getVendas(@PathVariable("id") Long id) {

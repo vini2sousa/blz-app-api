@@ -1,14 +1,10 @@
 package com.example.blzapi.api.controller;
 
-import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.CargoDTO;
-import com.example.blzapi.api.dto.FornecerdorDTO;
+import com.example.blzapi.api.dto.CargoFuncionarioDTO;
+import com.example.blzapi.api.dto.OrdemServicosDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Cargo;
-import com.example.blzapi.model.entity.Fornecedor;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.service.AgendamentoService;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.CargoService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +40,15 @@ public class CargoController {
             return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(CargoDTO::create));
+    }
+    @GetMapping("/{id}/cargoFuncionario")
+    public ResponseEntity getCargoFuncionario(@PathVariable("id") Long id) {
+        Optional<Cargo> cargo = service.getCargoById(id);
+        if (!cargo.isPresent()) {
+            return new ResponseEntity("Cargo não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<CargoFuncionario> cargoFuncionario = cargo.get().getFuncionario();
+        return ResponseEntity.ok(cargoFuncionario.stream().map(CargoFuncionarioDTO::create).collect(Collectors.toList()));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody CargoDTO dto) {

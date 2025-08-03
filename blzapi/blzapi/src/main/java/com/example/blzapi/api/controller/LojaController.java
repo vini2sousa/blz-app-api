@@ -37,6 +37,15 @@ public class LojaController {
         }
         return ResponseEntity.ok(loja.map(LojaDTO::create));
     }
+    @GetMapping("/{id}/ClienteLojas")
+    public ResponseEntity getClienteLojas(@PathVariable("id") Long id) {
+        Optional<Loja> loja = service.getLojaById(id);
+        if (!loja.isPresent()) {
+            return new ResponseEntity("Loja não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ClienteLoja> cliente = loja.get().getClientes();
+        return ResponseEntity.ok(cliente.stream().map(ClienteLojaDTO::create).collect(Collectors.toList()));
+    }
     @GetMapping("/{id}/produtos")
     public ResponseEntity getProdutos(@PathVariable("id") Long id) {
         Optional<Loja> loja = service.getLojaById(id);

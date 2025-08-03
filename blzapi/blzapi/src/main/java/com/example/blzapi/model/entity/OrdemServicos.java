@@ -17,7 +17,7 @@ public class OrdemServicos{
 
     private Long id;
 
-    private int quantidade;
+    private Integer quantidade;
     @ManyToOne
     private Servico servicos;
     @ManyToOne

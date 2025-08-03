@@ -1,12 +1,9 @@
 package com.example.blzapi.api.controller;
 
-import com.example.blzapi.api.dto.AgendamentoDTO;
+import com.example.blzapi.api.dto.CargoFuncionarioDTO;
 import com.example.blzapi.api.dto.FuncionarioDTO;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.model.entity.Agendamento;
-import com.example.blzapi.model.entity.Funcionario;
-import com.example.blzapi.model.entity.Loja;
-import com.example.blzapi.model.service.AgendamentoService;
+import com.example.blzapi.model.entity.*;
 import com.example.blzapi.model.service.FuncionarioService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -42,6 +39,15 @@ public class FuncionarioController {
             return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(FuncionarioDTO::create));
+    }
+    @GetMapping("/{id}/cargoFuncionario")
+    public ResponseEntity getCargoFuncionario(@PathVariable("id") Long id) {
+        Optional<Funcionario> funcionario = service.getFuncionarioById(id);
+        if (!funcionario.isPresent()) {
+            return new ResponseEntity("Funcionario não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<CargoFuncionario> cargoFuncionario = funcionario.get().getCargo();
+        return ResponseEntity.ok(cargoFuncionario.stream().map(CargoFuncionarioDTO::create).collect(Collectors.toList()));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody FuncionarioDTO dto) {
@@ -83,9 +89,6 @@ public class FuncionarioController {
         }
 
     }
-
-
-
     public Funcionario converter(FuncionarioDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();

@@ -1,5 +1,7 @@
 package com.example.blzapi.api.controller;
 
+import com.example.blzapi.api.dto.ClienteLojaDTO;
+import com.example.blzapi.api.dto.ItemVendasDTO;
 import com.example.blzapi.api.dto.VendaDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.*;
@@ -37,6 +39,15 @@ public class VendaController {
             return new ResponseEntity("Venda não encontrada", HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok(aluno.map(VendaDTO::create));
+    }
+    @GetMapping("/{id}/itemVendas")
+    public ResponseEntity getItemVendas(@PathVariable("id") Long id) {
+        Optional<Venda> venda = service.getVendaById(id);
+        if (!venda.isPresent()) {
+            return new ResponseEntity("Vendas não encontrado", HttpStatus.NOT_FOUND);
+        }
+        List<ItemVendas> itemVendas = venda.get().getItemVendas();
+        return ResponseEntity.ok(itemVendas.stream().map(ItemVendasDTO::create).collect(Collectors.toList()));
     }
     @PostMapping()
     public ResponseEntity post(@RequestBody VendaDTO dto) {

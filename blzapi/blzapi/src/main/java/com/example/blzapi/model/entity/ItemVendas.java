@@ -18,7 +18,7 @@ public class ItemVendas{
 
     private Long id;
 
-    private int quantidade;
+    private Integer quantidade;
     @ManyToOne
     private Venda vendas;
     @ManyToOne
