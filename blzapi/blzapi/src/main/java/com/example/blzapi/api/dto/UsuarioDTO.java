@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,6 +19,7 @@ public class UsuarioDTO {
     private String celular;
     private String telefone;
     private String dataNascimento;
+    private List<Long> idLojas;
 
     public static UsuarioDTO create(Usuario usuario){
 

@@ -26,7 +26,7 @@ public class VendaController {
     private final LojaService lojaService;
     private final UsuarioService usuarioService;
     private final FormaPagamentoService formaPagamentoService;
-
+    private final ProdutoService produtoService;
     @GetMapping()
     public ResponseEntity get() {
         List<Venda> fornecedor = service.getVendas();
@@ -89,41 +89,36 @@ public class VendaController {
     }
 
 
-    public Venda converter(VendaDTO dto){
-
+    public Venda converter(VendaDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
-        Venda venda = modelMapper.map(dto,Venda.class);
+        Venda venda = modelMapper.map(dto, Venda.class);
 
-        if(dto.getIdLoja() != null){
-
-            Optional<Loja> loja = lojaService.getLojaById(dto.getIdLoja());
-
-            if(!loja.isPresent()){
-                venda.setLoja(null);
-            }else{
-                venda.setLoja(loja.get());
-            }
+        // Lógica para Loja, Usuário e FormaPagamento (mantida e otimizada)
+        if (dto.getIdLoja() != null) {
+            lojaService.getLojaById(dto.getIdLoja()).ifPresent(venda::setLoja);
         }
-        if(dto.getIdUsuario() != null){
-
-            Optional<Usuario> usuario = usuarioService.getUsuarioById(dto.getIdUsuario());
-
-            if(!usuario.isPresent()){
-                venda.setUsuario(null);
-            }else {
-                venda.setUsuario(usuario.get());
-            }
+        if (dto.getIdUsuario() != null) {
+            usuarioService.getUsuarioById(dto.getIdUsuario()).ifPresent(venda::setUsuario);
         }
-        if(dto.getIdFormaPagamento() != null){
-            Optional<FormaPagamento> formaPagamento = formaPagamentoService.getFormaPagamentoById(dto.getIdFormaPagamento());
-            if(!formaPagamento.isPresent()){
-                venda.setFormaPagamento(null);
-            }
-            else {
-                venda.setFormaPagamento(formaPagamento.get());
-            }
+        if (dto.getIdFormaPagamento() != null) {
+            formaPagamentoService.getFormaPagamentoById(dto.getIdFormaPagamento()).ifPresent(venda::setFormaPagamento);
         }
 
+        // NOVO: Lógica para processar os itens da venda
+        if (dto.getItens() != null && !dto.getItens().isEmpty()) {
+            List<ItemVendas> itensDaVenda = dto.getItens().stream().map(itemDto -> {
+                Produto produto = produtoService.getProdutoById(itemDto.getIdProduto())
+                        .orElseThrow(() -> new RegraNegocioException("Produto não encontrado para o ID: " + itemDto.getIdProduto()));
+
+                ItemVendas itemVenda = new ItemVendas();
+                itemVenda.setVendas(venda); // Associa o item à venda que estamos criando
+                itemVenda.setProdutos(produto); // Associa o item ao produto encontrado
+                itemVenda.setQuantidade(itemDto.getQuantidade()); // Define a quantidade
+                return itemVenda;
+            }).collect(Collectors.toList());
+
+            venda.setItemVendas(itensDaVenda);
+        }
         return venda;
     }
 }

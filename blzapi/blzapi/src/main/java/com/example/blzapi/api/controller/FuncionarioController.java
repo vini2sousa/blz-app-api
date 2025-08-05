@@ -4,6 +4,7 @@ import com.example.blzapi.api.dto.CargoFuncionarioDTO;
 import com.example.blzapi.api.dto.FuncionarioDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.*;
+import com.example.blzapi.model.service.CargoService;
 import com.example.blzapi.model.service.FuncionarioService;
 import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class FuncionarioController {
 
     private final FuncionarioService service;
     private final LojaService lojaService;
+    private final CargoService cargoService;
 
     @GetMapping()
     public ResponseEntity get() {
@@ -89,23 +91,33 @@ public class FuncionarioController {
         }
 
     }
-    public Funcionario converter(FuncionarioDTO dto){
-
+    public Funcionario converter(FuncionarioDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
-        Funcionario funcionario = modelMapper.map(dto,Funcionario.class);
+        Funcionario funcionario = modelMapper.map(dto, Funcionario.class);
 
-        if(dto.getIdLoja() != null){
+        // Lógica da Loja (mantida)
+        if (dto.getIdLoja() != null) {
+            lojaService.getLojaById(dto.getIdLoja()).ifPresent(funcionario::setLoja);
+        }
 
-            Optional<Loja> loja = lojaService.getLojaById(dto.getIdLoja());
+        // Lógica para associar os Cargos a partir da lista de IDs
+        if (dto.getIdCargos() != null && !dto.getIdCargos().isEmpty()) {
+            List<CargoFuncionario> cargosDoFuncionario = dto.getIdCargos().stream().map(idCargo -> {
+                Cargo cargo = cargoService.getCargoById(idCargo)
+                        .orElseThrow(() -> new RegraNegocioException("Cargo não encontrado para o ID: " + idCargo));
 
-            if(!loja.isPresent()){
-                funcionario.setLoja(null);
-            }else{
-                funcionario.setLoja(loja.get());
-            }
+                // Cria a entidade de ligação que você nos mostrou
+                CargoFuncionario cargoFuncionario = new CargoFuncionario();
+                cargoFuncionario.setFuncionario(funcionario); // Associa ao funcionário
+                cargoFuncionario.setCargo(cargo); // Associa ao cargo
+                return cargoFuncionario;
+            }).collect(Collectors.toList());
+
+            funcionario.setCargo(cargosDoFuncionario);
         }
 
         return funcionario;
-    }
 }
+    }
+
 

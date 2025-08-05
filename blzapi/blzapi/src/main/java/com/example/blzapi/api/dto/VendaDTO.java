@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,7 +23,14 @@ public class VendaDTO {
     private String nomeLoja;
     private Long idUsuario;
     private String nomeUsuario;
+    private List<ItemVendaInputDTO> itens;
 
+    // NOVO: Classe interna para representar cada item enviado pelo frontend
+    @Data
+    public static class ItemVendaInputDTO {
+        private Long idProduto;
+        private Integer quantidade;
+    }
     public static VendaDTO create(Venda venda){
 
         ModelMapper modelMapper = new ModelMapper();

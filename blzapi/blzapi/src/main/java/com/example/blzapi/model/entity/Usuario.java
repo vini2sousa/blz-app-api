@@ -17,7 +17,6 @@ import java.util.List;
 public class Usuario extends Pessoa {
 
     private String email;
-
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<ClienteLoja> clienteLojas;

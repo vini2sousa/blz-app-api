@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
+
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,7 +22,7 @@ public class FuncionarioDTO {
     private Long idLoja;
     private String nomeLoja;
     private String telefone;
-
+    private List<Long> idCargos;
     public static FuncionarioDTO create(Funcionario funcionario){
 
         ModelMapper modelMapper = new ModelMapper();

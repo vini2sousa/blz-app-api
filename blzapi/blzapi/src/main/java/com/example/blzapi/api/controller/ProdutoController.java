@@ -1,12 +1,10 @@
 package com.example.blzapi.api.controller;
 
-import com.example.blzapi.api.dto.AgendamentoDTO;
 import com.example.blzapi.api.dto.ItemVendasDTO;
 import com.example.blzapi.api.dto.ProdutoDTO;
 import com.example.blzapi.api.dto.ProdutoUtilizadoDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.*;
-import com.example.blzapi.model.service.AgendamentoService;
 import com.example.blzapi.model.service.FornecedorService;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.ProdutoService;

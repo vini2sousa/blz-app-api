@@ -5,8 +5,10 @@ import com.example.blzapi.api.dto.UsuarioDTO;
 import com.example.blzapi.api.dto.VendaDTO;
 import com.example.blzapi.exception.RegraNegocioException;
 import com.example.blzapi.model.entity.ClienteLoja;
+import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.entity.Venda;
+import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.UsuarioService;
 
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import java.util.stream.Collectors;
 public class UsuarioController {
 
     private final UsuarioService service;
+    private final LojaService lojaService;
 
 
     @GetMapping()
@@ -99,10 +102,28 @@ public class UsuarioController {
         }
 
     }
-    public Usuario converter(UsuarioDTO dto){
-
+    public Usuario converter(UsuarioDTO dto) {
         ModelMapper modelMapper = new ModelMapper();
-        Usuario Usuario = modelMapper.map(dto,Usuario.class);
-        return Usuario;
+        Usuario usuario = modelMapper.map(dto, Usuario.class);
+
+        // NOVO: Lógica para associar as Lojas ao Usuário
+        if (dto.getIdLojas() != null && !dto.getIdLojas().isEmpty()) {
+            List<ClienteLoja> lojasDoCliente = dto.getIdLojas().stream().map(idLoja -> {
+                Loja loja = lojaService.getLojaById(idLoja)
+                        .orElseThrow(() -> new RegraNegocioException("Loja não encontrada para o ID: " + idLoja));
+
+                // Cria a entidade de ligação ClienteLoja
+                ClienteLoja clienteLoja = new ClienteLoja();
+                clienteLoja.setUsuario(usuario); // Associa ao usuário que estamos criando
+                clienteLoja.setLoja(loja);       // Associa à loja encontrada
+                return clienteLoja;
+            }).collect(Collectors.toList());
+
+            // A entidade Usuario deve ter um campo 'private List<ClienteLoja> lojas;'
+            // com o @OneToMany correspondente
+            usuario.setClienteLojas(lojasDoCliente);
+        }
+
+        return usuario;
     }
 }
