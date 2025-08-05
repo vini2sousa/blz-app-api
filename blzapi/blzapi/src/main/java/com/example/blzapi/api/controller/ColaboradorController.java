@@ -93,7 +93,7 @@ public class ColaboradorController {
     public Colaborador converter(ColaboradorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
-        Colaborador Colaborador = modelMapper.map(dto,Colaborador.class);
-        return Colaborador;
+        Colaborador colaborador = modelMapper.map(dto,Colaborador.class);
+        return colaborador;
     }
 }

@@ -41,11 +41,12 @@ public class FornecedorService {
         if (fornecedor.getNome()==null || fornecedor.getNome().trim().equals("")) {
             throw new RegraNegocioException("Nome Invalido");
         }
-        if (fornecedor.getCnpj()!=null){
-            fornecedor.setCpf(null);
-        }
-        if ((fornecedor.getCnpj() == null || fornecedor.getCnpj().trim().equals("")) && (fornecedor.getCpf() == null || fornecedor.getCpf().trim().equals(""))) {
-            throw new RegraNegocioException("CNPJ ou CPF não cadastrado");
+
+        if (
+                fornecedor.getCnpj() == null || fornecedor.getCnpj().trim().isEmpty() &&
+                        fornecedor.getCpf() == null || fornecedor.getCpf().trim().isEmpty()
+        ) {
+            throw new RegraNegocioException("CNPJ e CPF obrigatórios");
         }
     }
 }

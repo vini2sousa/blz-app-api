@@ -115,7 +115,7 @@ public class ServicoController {
         }   if(dto.getIdCargo() != null){
             Optional<Cargo> cargo = cargoService.getCargoById(dto.getIdCargo());
             if(!cargo.isPresent()){
-                servico.setLoja(null);
+                servico.setCargo(null);
             }else {
                 servico.setCargo(cargo.get());
             }
