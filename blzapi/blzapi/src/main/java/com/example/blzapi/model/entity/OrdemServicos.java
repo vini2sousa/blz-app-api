@@ -1,4 +1,5 @@
 package com.example.blzapi.model.entity;
+import com.example.blzapi.model.entity.Agendamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

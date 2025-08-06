@@ -24,10 +24,19 @@ public class ItemVendasDTO {
 
         // Verificamos se o produto associado ao item não é nulo
         if (itemVendas.getProdutos() != null) {
-            // Buscamos o NOME do produto e colocamos no DTO
+            // --- LINHA FALTANTE ADICIONADA AQUI ---
+            // Pega o ID do objeto Produto e o atribui ao campo idProduto da DTO.
+            dto.setIdProduto(itemVendas.getProdutos().getId());
+
+            // Buscamos o NOME do produto e colocamos no DTO (isso já estava certo)
             dto.setNomeProduto(itemVendas.getProdutos().getNome());
-            // Buscamos o PREÇO do produto e colocamos no DTO
+            // Buscamos o PREÇO do produto e colocamos no DTO (isso já estava certo)
             dto.setPrecoUnitario(itemVendas.getProdutos().getValorVenda());
+        }
+
+        // Boa prática: garantir que o ID da venda também seja mapeado
+        if(itemVendas.getVendas() != null) {
+            dto.setIdvendas(itemVendas.getVendas().getId());
         }
 
         return dto;

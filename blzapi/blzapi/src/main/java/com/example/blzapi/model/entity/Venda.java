@@ -29,6 +29,6 @@ public class Venda {
     private Usuario usuario;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "vendas")
+    @OneToMany(mappedBy = "vendas", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemVendas> itemVendas;
 }

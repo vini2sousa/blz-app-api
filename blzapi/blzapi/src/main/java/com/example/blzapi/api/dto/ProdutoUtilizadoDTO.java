@@ -18,11 +18,19 @@ public class ProdutoUtilizadoDTO {
     private String nomeServico;
     private Integer quantidade;
 
-    public static Object create(ProdutoUtilizado produtoUtilizado) {
+    // CORREÇÃO: O tipo de retorno foi corrigido de Object para ProdutoUtilizadoDTO.
+    public static ProdutoUtilizadoDTO create(ProdutoUtilizado produtoUtilizado) {
         ModelMapper modelMapper = new ModelMapper();
         ProdutoUtilizadoDTO dto = modelMapper.map(produtoUtilizado, ProdutoUtilizadoDTO.class);
-        dto.nomeProduto = produtoUtilizado.getProdutos().getNome();
-        dto.nomeServico = produtoUtilizado.getServicos().getNome();
+
+        // Assumindo que a entidade ProdutoUtilizado tem os métodos getProdutos() e getServicos()
+        if (produtoUtilizado.getProdutos() != null) {
+            dto.nomeProduto = produtoUtilizado.getProdutos().getNome();
+        }
+        if (produtoUtilizado.getServicos() != null) {
+            dto.nomeServico = produtoUtilizado.getServicos().getNome();
+        }
+
         return dto;
     }
 }

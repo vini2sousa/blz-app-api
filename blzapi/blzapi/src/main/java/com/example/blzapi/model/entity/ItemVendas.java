@@ -20,6 +20,7 @@ public class ItemVendas{
 
     private Integer quantidade;
     @ManyToOne
+    @JoinColumn(name = "id_vendas")
     private Venda vendas;
     @ManyToOne
     private Produto produtos;
