@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 public class Usuario extends Pessoa {
 
     private String email;
@@ -23,6 +24,8 @@ public class Usuario extends Pessoa {
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
     private List<Venda> vendas;
-
+    private String login;
+    private String senha;
+    private boolean admin;
 
 }

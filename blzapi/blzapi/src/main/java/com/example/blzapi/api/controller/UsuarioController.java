@@ -1,9 +1,8 @@
 package com.example.blzapi.api.controller;
 
-import com.example.blzapi.api.dto.ClienteLojaDTO;
-import com.example.blzapi.api.dto.UsuarioDTO;
-import com.example.blzapi.api.dto.VendaDTO;
+import com.example.blzapi.api.dto.*;
 import com.example.blzapi.exception.RegraNegocioException;
+import com.example.blzapi.exception.SenhaInvalidaException;
 import com.example.blzapi.model.entity.ClienteLoja;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Usuario;
@@ -11,11 +10,16 @@ import com.example.blzapi.model.entity.Venda;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.UsuarioService;
 
+import com.example.blzapi.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,9 +30,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @CrossOrigin
 public class UsuarioController {
-
+    private final UsuarioService usuarioService;
     private final UsuarioService service;
     private final LojaService lojaService;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+
 
 
     @GetMapping()
@@ -65,19 +72,51 @@ public class UsuarioController {
     @PostMapping()
     public ResponseEntity post(@RequestBody UsuarioDTO dto) {
         try {
-            Usuario Usuario = converter(dto);
-            Usuario = service.salvar(Usuario);
-            return new ResponseEntity(Usuario, HttpStatus.CREATED);
+            if (dto.getSenha() == null || dto.getSenha().trim().equals("") ||
+                    dto.getSenhaRepeticao() == null || dto.getSenhaRepeticao().trim().equals("")) {
+                return ResponseEntity.badRequest().body("Senha inválida");
+            }
+            if (!dto.getSenha().equals(dto.getSenhaRepeticao())) {
+                return ResponseEntity.badRequest().body("Senhas não conferem");
+            }
+            Usuario usuario = converter(dto);
+            String senhaCriptografada = passwordEncoder.encode(dto.getSenha());
+            usuario.setSenha(senhaCriptografada);
+            usuario = service.salvar(usuario);
+            return new ResponseEntity(usuario, HttpStatus.CREATED);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PostMapping("/auth")
+    public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
+        try{
+            Usuario usuario = Usuario.builder()
+                    .login(credenciais.getLogin())
+                    .senha(credenciais.getSenha()).build();
+            UserDetails usuarioAutenticado = usuarioService.autenticar(usuario);
+            String token = jwtService.gerarToken(usuario);
+            return new TokenDTO(usuario.getLogin(), token);
+        } catch (UsernameNotFoundException | SenhaInvalidaException e ){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
+        }
+    }
+
+
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody UsuarioDTO dto) {
         if (!service.getUsuarioById(id).isPresent()) {
-            return new ResponseEntity("Usuario não encontrado", HttpStatus.NOT_FOUND);
+            return new ResponseEntity("Usuário não encontrado", HttpStatus.NOT_FOUND);
         }
         try {
+            if (dto.getSenha() == null || dto.getSenha().trim().equals("") ||
+                    dto.getSenhaRepeticao() == null || dto.getSenhaRepeticao().trim().equals("")) {
+                return ResponseEntity.badRequest().body("Senha inválida");
+            }
+            if (!dto.getSenha().equals(dto.getSenhaRepeticao())) {
+                return ResponseEntity.badRequest().body("Senhas não conferem");
+            }
             Usuario usuario = converter(dto);
             usuario.setId(id);
             service.salvar(usuario);
