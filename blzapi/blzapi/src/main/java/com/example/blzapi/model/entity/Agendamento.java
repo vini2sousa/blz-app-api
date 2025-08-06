@@ -31,7 +31,7 @@ public class Agendamento {
     private ClienteLoja cliente;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "agendamento")
+    @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrdemServicos> servico;
 
 

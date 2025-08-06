@@ -1,6 +1,8 @@
 package com.example.blzapi.model.service;
 
 import com.example.blzapi.model.entity.ClienteLoja;
+import com.example.blzapi.model.entity.Loja;
+import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.repository.ClienteLojaRepository;
 import org.springframework.stereotype.Service;
 
