@@ -9,6 +9,7 @@ import com.example.blzapi.model.entity.Colaborador;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Servico;
 import com.example.blzapi.model.service.ColaboradorService;
+import com.example.blzapi.model.service.LojaService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @CrossOrigin
 public class ColaboradorController {
-    private final ColaboradorService service;
 
+    private final ColaboradorService service;
+    private final LojaService lojaService;
 
     @GetMapping()
     public ResponseEntity get() {
@@ -93,7 +95,19 @@ public class ColaboradorController {
     public Colaborador converter(ColaboradorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         Colaborador colaborador = modelMapper.map(dto,Colaborador.class);
+
+        if(dto.getIdLoja() != null){
+
+            Optional<Loja> loja = lojaService.getLojaById(dto.getIdLoja());
+
+            if(!loja.isPresent()){
+                colaborador.setLoja(null);
+            }else{
+                colaborador.setLoja(loja.get());
+            }
+        }
         return colaborador;
     }
 }

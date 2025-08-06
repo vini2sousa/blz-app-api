@@ -23,6 +23,7 @@ public class ColaboradorDTO {
 
     public static Object create(Colaborador colaborador) {
         ModelMapper modelMapper = new ModelMapper();
+        modelMapper.getConfiguration().setAmbiguityIgnored(true);
         ColaboradorDTO dto = modelMapper.map(colaborador, ColaboradorDTO.class);
         dto.nomeLoja = colaborador.getLoja().getNome();
         return dto;
