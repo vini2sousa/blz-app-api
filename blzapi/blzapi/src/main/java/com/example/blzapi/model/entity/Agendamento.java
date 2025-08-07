@@ -28,7 +28,7 @@ public class Agendamento {
     @ManyToOne
     private Funcionario funcionario;
     @ManyToOne
-    private ClienteLoja cliente;
+    private Usuario cliente;
 
     @JsonIgnore
     @OneToMany(mappedBy = "agendamento", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -19,10 +19,6 @@
 		<lombok.version>1.18.30</lombok.version> <!-- Definindo versão explícita do Lombok -->
 	</properties>
 
-
-
-
-
 	<dependencies>
 
 		<dependency>

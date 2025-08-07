@@ -49,8 +49,8 @@ public class AgendamentoDTO {
         if (agendamento.getFuncionario() != null) {
             dto.setNomeFuncionario(agendamento.getFuncionario().getNome());
         }
-        if (agendamento.getCliente() != null && agendamento.getCliente().getUsuario() != null) {
-            dto.setNomeCliente(agendamento.getCliente().getUsuario().getNome());
+        if (agendamento.getCliente() != null && agendamento.getCliente() != null) {
+            dto.setNomeCliente(agendamento.getCliente().getNome());
         }
 
         // Lógica para preencher a lista de serviços

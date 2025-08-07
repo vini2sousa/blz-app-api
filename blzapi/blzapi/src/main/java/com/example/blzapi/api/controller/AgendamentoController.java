@@ -24,7 +24,7 @@
 
         private final AgendamentoService service;
         private final LojaService lojaService;
-        private final ClienteLojaService clienteLojaService; // Nome do serviço de cliente correto
+        private final UsuarioService clienteLojaService; // Nome do serviço de cliente correto
         private final FuncionarioService funcionarioService;
         private final ServicoService servicoService;
 
@@ -107,7 +107,7 @@
 
             // LÓGICA CORRIGIDA: Usando clienteService para buscar e setar um Cliente
             if(dto.getIdCliente() != null){
-                clienteLojaService.getClienteLojaById(dto.getIdCliente())
+                clienteLojaService.getUsuarioById(dto.getIdCliente())
                         .ifPresentOrElse(agendamento::setCliente,
                                 () -> { throw new RegraNegocioException("Cliente não encontrado para o ID: " + dto.getIdCliente()); });
             }

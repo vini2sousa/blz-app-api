@@ -91,21 +91,24 @@ public class ColaboradorController {
 
     }
 
-
     public Colaborador converter(ColaboradorDTO dto){
 
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setAmbiguityIgnored(true);
         Colaborador colaborador = modelMapper.map(dto,Colaborador.class);
 
+        System.out.println("ID da loja recebido: " + dto.getIdLoja());
+
         if(dto.getIdLoja() != null){
 
             Optional<Loja> loja = lojaService.getLojaById(dto.getIdLoja());
+            System.out.println("Loja encontrada: " + loja.isPresent());
 
             if(!loja.isPresent()){
                 colaborador.setLoja(null);
             }else{
                 colaborador.setLoja(loja.get());
+                System.out.println("Loja atribuída: " + loja.get().getNome());
             }
         }
         return colaborador;
