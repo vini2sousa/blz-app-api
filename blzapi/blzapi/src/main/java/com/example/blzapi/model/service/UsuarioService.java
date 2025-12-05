@@ -1,7 +1,7 @@
 package com.example.blzapi.model.service;
 
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.exception.SenhaInvalidaException;
+
 
 import com.example.blzapi.model.entity.Usuario;
 import com.example.blzapi.model.repository.UsuarioRepository;
@@ -21,8 +21,7 @@ import java.util.Optional;
 @Service
 public class UsuarioService implements UserDetailsService {
 
-    @Autowired
-    private PasswordEncoder encoder;
+
 
     @Autowired
     private UsuarioRepository repository;
@@ -41,15 +40,7 @@ public class UsuarioService implements UserDetailsService {
         return repository.save(usuario);
     }
 
-    public UserDetails autenticar(Usuario usuario){
-        UserDetails user = loadUserByUsername(usuario.getLogin());
-        boolean senhasBatem = encoder.matches(usuario.getSenha(), user.getPassword());
 
-        if (senhasBatem){
-            return user;
-        }
-        throw new SenhaInvalidaException();
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

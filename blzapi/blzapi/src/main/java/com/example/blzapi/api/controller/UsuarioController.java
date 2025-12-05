@@ -2,7 +2,7 @@ package com.example.blzapi.api.controller;
 
 import com.example.blzapi.api.dto.*;
 import com.example.blzapi.exception.RegraNegocioException;
-import com.example.blzapi.exception.SenhaInvalidaException;
+
 import com.example.blzapi.model.entity.ClienteLoja;
 import com.example.blzapi.model.entity.Loja;
 import com.example.blzapi.model.entity.Usuario;
@@ -10,7 +10,6 @@ import com.example.blzapi.model.entity.Venda;
 import com.example.blzapi.model.service.LojaService;
 import com.example.blzapi.model.service.UsuarioService;
 
-import com.example.blzapi.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -33,8 +32,6 @@ public class UsuarioController {
     private final UsuarioService usuarioService;
     private final UsuarioService service;
     private final LojaService lojaService;
-    private final PasswordEncoder passwordEncoder;
-    private final JwtService jwtService;
 
 
 
@@ -80,7 +77,7 @@ public class UsuarioController {
                 return ResponseEntity.badRequest().body("Senhas não conferem");
             }
             Usuario usuario = converter(dto);
-            String senhaCriptografada = passwordEncoder.encode(dto.getSenha());
+            String senhaCriptografada = dto.getSenha();
             usuario.setSenha(senhaCriptografada);
             usuario = service.salvar(usuario);
             return new ResponseEntity(usuario, HttpStatus.CREATED);
@@ -89,19 +86,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping("/auth")
-    public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
-        try{
-            Usuario usuario = Usuario.builder()
-                    .login(credenciais.getLogin())
-                    .senha(credenciais.getSenha()).build();
-            UserDetails usuarioAutenticado = usuarioService.autenticar(usuario);
-            String token = jwtService.gerarToken(usuario);
-            return new TokenDTO(usuario.getLogin(), token);
-        } catch (UsernameNotFoundException | SenhaInvalidaException e ){
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-        }
-    }
+
 
 
     @PutMapping("{id}")
