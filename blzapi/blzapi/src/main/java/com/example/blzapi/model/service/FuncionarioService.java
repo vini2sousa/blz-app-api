@@ -52,4 +52,54 @@ public class FuncionarioService {
             throw new RegraNegocioException("Loja deve ser informado");
         }
     }
+
+    public double calcularBonusDesempenho(Funcionario funcionario, String cargo, int faltas, double notaAvaliacao, double salarioAtual) {
+        double bonus = 0.0;
+        if (funcionario == null || cargo == null) {
+            return 0.0;
+        }
+        if (faltas > 5) {
+            return 0.0;
+        }
+        if (cargo.equalsIgnoreCase("GERENTE")) {
+
+            if (notaAvaliacao >= 9.0 && faltas == 0) {
+                bonus = salarioAtual * 0.30; // 30%
+            }
+            else if (notaAvaliacao >= 7.0) {
+                bonus = salarioAtual * 0.15; // 15%
+            }
+            else {
+                return 0.0;
+            }
+            if (funcionario.getId() < 100) {
+                bonus += 500.0;
+            }
+        }
+        else if (cargo.equalsIgnoreCase("VENDEDOR")) {
+            if (faltas > 2) {
+                if (notaAvaliacao == 10.0) {
+                    bonus = salarioAtual * 0.05;
+                } else {
+                    return 0.0;
+                }
+            } else {
+                if (notaAvaliacao >= 8.0) {
+                    bonus = salarioAtual * 0.10;
+                }
+                else if (notaAvaliacao >= 6.0) {
+                    bonus = salarioAtual * 0.02;
+                }
+            }
+        }
+        else {
+            if (faltas == 0) {
+                bonus = 200.0;
+            }
+            if (funcionario.getDataNascimento() != null && funcionario.getDataNascimento().startsWith("01/")) {
+                bonus += 50.0;
+            }
+        }
+        return bonus;
+    }
 }
